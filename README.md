@@ -1,8 +1,33 @@
-# Wine Recommendation Service
+# Домашнее задание по Бизнес-применению машинного обучения
+---
+
+## Тесты на hh:
+
+### Скриншот 1
+![Скриншот 1](hh/тест_hh_1.png)
+
+### Скриншот 2
+![Скриншот 2](hh/тест_hh_2.png)
+
+### Скриншот 3
+![Скриншот 3](hh/тест_hh_3.png)
+
+### Скриншот 4
+![Скриншот 4](hh/тест_hh_4.png)
+
+### Скриншот 5
+![Скриншот 5](hh/тест_hh_5.png)
+
+### Скриншот 6
+![Скриншот 6](hh/тест_hh_6.png)
+
+--- 
+
+## Wine Recommendation Service
 
 MVP-сервис подбора вина. Он разбирает запрос на русском языке, фильтрует каталог и возвращает TOP-N. Лайки сохраняются и дают небольшой бонус любимой паре `color + sugar_type`.
 
-## Архитектура
+### Архитектура
 
 ```text
 JSON source -> WineSource -> normalize -> Repository -> PostgreSQL
@@ -17,13 +42,13 @@ User query -> QueryParser -> filter -> weighted ranking -> TOP-N -> API
 
 Ranking: `0.55 * rating + 0.25 * price_fit + 0.20 * popularity`. Веса задаются в `.env`.
 
-## Требования
+### Требования
 
 - Python 3.11+
 - Poetry 2.x (`pipx install poetry`)
 - PostgreSQL 16 или Docker + Docker Compose
 
-## Быстрый запуск в Docker
+### Быстрый запуск в Docker
 
 ```bash
 cp .env.example .env
@@ -32,7 +57,7 @@ docker compose up --build
 
 Веб-интерфейс: <http://localhost:8000>, Swagger UI: <http://localhost:8000/docs>. Контейнер применит миграции и запустит Uvicorn.
 
-## Локальная установка
+### Локальная установка
 
 ```bash
 poetry install
@@ -43,7 +68,7 @@ poetry run alembic upgrade head
 poetry run uvicorn wine_recommendation.main:app --reload
 ```
 
-## API
+### API
 
 - `GET /health`
 - `GET /wines`, `GET /wines/{id}`
@@ -58,7 +83,7 @@ curl -X POST http://localhost:8000/recommendations \
   -d '{"query":"красное сухое до 1500","limit":5}'
 ```
 
-## Обновление каталога
+### Обновление каталога
 
 Для локальной разработки используется JSON-мок, который уже включён в проект:
 
@@ -76,7 +101,7 @@ docker compose run --rm api python scripts/update_parser.py
 curl -X POST http://localhost:8000/parser/update
 ```
 
-## Качество кода
+### Качество кода
 
 ```bash
 poetry run pytest
