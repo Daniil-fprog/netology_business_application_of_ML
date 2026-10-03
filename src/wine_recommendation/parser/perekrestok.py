@@ -4,8 +4,10 @@ import json
 import logging
 from collections.abc import Mapping
 from decimal import Decimal, InvalidOperation
+from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
+from urllib.parse import unquote, urlsplit
 from urllib.request import Request, urlopen
 
 from wine_recommendation.parser.base import SourceError
@@ -32,14 +34,9 @@ class PerekrestokSource:
 
     def fetch(self) -> list[ParsedWine]:
         logger.info("Starting source fetch", extra={"source": self.name})
-        request = Request(
-            self.endpoint,
-            headers={"User-Agent": self.user_agent, "Accept": "application/json"},
-        )
         try:
-            with urlopen(request, timeout=self.timeout) as response:  # noqa: S310
-                payload = json.load(response)
-        except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as exc:
+            payload = self._load_payload()
+        except (HTTPError, URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
             logger.exception("Source fetch failed", extra={"source": self.name})
             raise SourceError("Не удалось получить данные источника") from exc
 
@@ -52,6 +49,26 @@ class PerekrestokSource:
                 logger.warning("Skipping invalid source item", exc_info=True)
         logger.info("Source fetch completed: %d items", len(parsed))
         return parsed
+
+    def _load_payload(self) -> Any:
+        parsed_url = urlsplit(self.endpoint)
+        if parsed_url.scheme in {"http", "https"}:
+            request = Request(
+                self.endpoint,
+                headers={"User-Agent": self.user_agent, "Accept": "application/json"},
+            )
+            with urlopen(request, timeout=self.timeout) as response:  # noqa: S310
+                return json.load(response)
+
+        if parsed_url.scheme == "file":
+            path = Path(unquote(parsed_url.path))
+        elif not parsed_url.scheme:
+            path = Path(self.endpoint)
+        else:
+            raise SourceError("Источник должен быть HTTP(S)-адресом или локальным JSON-файлом")
+
+        with path.open(encoding="utf-8") as source_file:
+            return json.load(source_file)
 
     @staticmethod
     def _items(payload: Any) -> list[Mapping[str, Any]]:

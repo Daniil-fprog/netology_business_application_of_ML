@@ -60,19 +60,20 @@ curl -X POST http://localhost:8000/recommendations \
 
 ## Обновление каталога
 
-Автосбор по умолчанию отключён. Сначала проверьте условия сайта, robots.txt, права на данные и утвердите endpoint. Затем задайте:
+Для локальной разработки используется JSON-мок, который уже включён в проект:
 
 ```dotenv
 PARSER_ENABLED=true
-PEREKRESTOK_API_URL=https://approved.example/api/catalog
+PEREKRESTOK_API_URL=src/wine_recommendation/data/mock_wines.json
 PARSER_USER_AGENT=WineRecommendationMVP/0.1 (+your-contact@example.com)
 ```
 
-Ответ — JSON-массив или объект с `items`/`products`. Повторный запуск обновляет Wine/WineOffer; исчезнувшие из snapshot товары становятся недоступными.
+Источник может быть локальным JSON-файлом либо разрешённым HTTP(S)-endpoint. Формат — JSON-массив или объект с `items`/`products`. Встроенный мок содержит 16 вин разных цветов, типов сахара и цен. Повторный запуск обновляет Wine/WineOffer; исчезнувшие из snapshot товары становятся недоступными.
 
 ```bash
-poetry run python scripts/update_parser.py
-# или POST /parser/update
+docker compose run --rm api python scripts/update_parser.py
+# либо при запущенном API:
+curl -X POST http://localhost:8000/parser/update
 ```
 
 ## Качество кода

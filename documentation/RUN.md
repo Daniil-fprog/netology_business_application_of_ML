@@ -161,15 +161,15 @@ Production-подобный запуск без автоматической п�
 poetry run uvicorn wine_recommendation.main:app --host 0.0.0.0 --port 8000 --env-file .env
 ```
 
-## Загрузка каталога вин
+## Загрузка каталога вин из мока
 
-Перед включением парсера необходимо проверить правила источника, `robots.txt` и допустимость автоматизированного использования данных.
+В проект включён локальный JSON-каталог с 16 тестовыми винами. Сетевые запросы и браузер для его загрузки не нужны.
 
 В `.env` нужно задать:
 
 ```dotenv
 PARSER_ENABLED=true
-PEREKRESTOK_API_URL=https://адрес-разрешённого-json-endpoint
+PEREKRESTOK_API_URL=src/wine_recommendation/data/mock_wines.json
 PARSER_USER_AGENT=WineRecommendationMVP/0.1 (+your-email@example.com)
 ```
 
@@ -179,18 +179,17 @@ PARSER_USER_AGENT=WineRecommendationMVP/0.1 (+your-email@example.com)
 poetry run dotenv run -- python scripts/update_parser.py
 ```
 
-Команда `dotenv run` передаёт скрипту переменные из `.env`. Скрипт получает каталог через адаптер источника, нормализует записи и выполняет upsert: существующие вина обновляются, новые добавляются, а отсутствующие в полном снимке предложения отмечаются недоступными.
+Команда `dotenv run` передаёт скрипту переменные из `.env`. Скрипт читает мок, нормализует записи и выполняет upsert: существующие вина обновляются, новые добавляются, а отсутствующие в полном снимке предложения отмечаются недоступными.
 
 При запуске через Docker вызвать API парсера:
 
 ```bash
-docker compose up -d --force-recreate api
-curl -X POST http://localhost:8000/parser/update
+docker compose run --rm api python scripts/update_parser.py
 ```
 
-Пересоздание контейнера API требуется, если настройки парсера были изменены в `.env` уже после запуска контейнеров.
+Команда запускает разовый контейнер без публикации порта `8000`. Альтернативно при уже работающем API можно вызвать `curl -X POST http://localhost:8000/parser/update`.
 
-Без `PARSER_ENABLED=true` endpoint вернёт HTTP 403. Без заполненного `PEREKRESTOK_API_URL` загрузка также не начнётся.
+Без `PARSER_ENABLED=true` endpoint вернёт HTTP 403. `PEREKRESTOK_API_URL` может содержать путь к локальному JSON-файлу, `file://` URL либо разрешённый HTTP(S)-endpoint.
 
 ## Проверка рекомендаций из терминала
 
