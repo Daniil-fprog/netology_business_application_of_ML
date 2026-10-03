@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "id": "sku-1",
+      "name": "Вино тестовое",
+      "brand": "Test Winery",
+      "country": "Грузия",
+      "color": "красное",
+      "sugar_type": "сухое",
+      "price": 999.9,
+      "old_price": 1200,
+      "rating": 4.5,
+      "reviews_count": 42,
+      "url": "https://example.test/wine/sku-1"
+    },
+    {"broken": true}
+  ]
+}
+

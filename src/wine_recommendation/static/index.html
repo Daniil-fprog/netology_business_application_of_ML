@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Подбор вина по вкусу, рейтингу и бюджету" />
+    <title>Винный выбор</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Prata&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="filter-panel">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">V</span>
+          <div>
+            <p class="eyebrow">Wine recommendation</p>
+            <h1>Винный выбор</h1>
+          </div>
+        </div>
+
+        <p class="intro">Соберите свой запрос — мы найдём лучшие совпадения в каталоге.</p>
+
+        <form id="recommendation-form">
+          <fieldset>
+            <legend>Цвет вина</legend>
+            <div class="segmented-control">
+              <label><input type="radio" name="color" value="красное" /><span>Красное</span></label>
+              <label><input type="radio" name="color" value="белое" /><span>Белое</span></label>
+              <label><input type="radio" name="color" value="розовое" /><span>Розовое</span></label>
+            </div>
+          </fieldset>
+
+          <label class="field">
+            <span>Содержание сахара</span>
+            <select name="sugarType">
+              <option value="">Не важно</option>
+              <option value="сухое">Сухое</option>
+              <option value="полусухое">Полусухое</option>
+              <option value="полусладкое">Полусладкое</option>
+              <option value="сладкое">Сладкое</option>
+            </select>
+          </label>
+
+          <div class="price-fields">
+            <label class="field">
+              <span>Цена от, ₽</span>
+              <input name="minPrice" type="number" min="0" step="100" placeholder="500" />
+            </label>
+            <label class="field">
+              <span>Цена до, ₽</span>
+              <input name="maxPrice" type="number" min="0" step="100" placeholder="2 000" />
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Минимальный рейтинг</span>
+            <select name="rating">
+              <option value="">Любой</option>
+              <option value="3">от 3 звёзд</option>
+              <option value="3.5">от 3,5 звёзд</option>
+              <option value="4">от 4 звёзд</option>
+              <option value="4.5">от 4,5 звёзд</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Количество рекомендаций</span>
+            <select name="limit">
+              <option value="5">5 вариантов</option>
+              <option value="10">10 вариантов</option>
+              <option value="20">20 вариантов</option>
+            </select>
+          </label>
+
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+          <button class="submit-button" type="submit">
+            <span>Подобрать вино</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <p class="footnote">Рекомендации основаны на рейтинге, цене и популярности.</p>
+      </aside>
+
+      <section class="results-panel" aria-live="polite" aria-busy="false">
+        <header class="results-header">
+          <div>
+            <p class="eyebrow">Персональная подборка</p>
+            <h2>Рекомендации</h2>
+          </div>
+          <span id="result-count" class="result-count">0 вариантов</span>
+        </header>
+
+        <div id="results" class="results-list">
+          <div class="empty-state">
+            <span class="empty-icon" aria-hidden="true">⌁</span>
+            <h3>Начнём с ваших предпочтений</h3>
+            <p>Заполните фильтры слева, и здесь появится подходящее вино.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
