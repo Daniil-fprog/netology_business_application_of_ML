@@ -9,4 +9,8 @@ __pycache__/
 htmlcov/
 dist/
 *.egg-info/
+.winelab-browser-profile/
 
+# Local WineLab production parser (contains the browser-session workflow).
+src/wine_recommendation/parser/winelab.py
+scripts/update_winelab_local.py

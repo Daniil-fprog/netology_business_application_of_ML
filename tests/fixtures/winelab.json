@@ -1,0 +1,1253 @@
+{
+  "pagination": {
+    "currentPage": 1,
+    "totalPages": 1,
+    "totalResults": 40
+  },
+  "products": [
+    {
+      "code": "wl-001",
+      "name": "Вино Test Rosso Sangiovese красное сухое, 750 мл",
+      "brand": {
+        "name": "Test Winery"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 999.9,
+        "formattedValue": "999,90 ₽"
+      },
+      "oldPrice": {
+        "value": 1299
+      },
+      "url": "/product/wl-001",
+      "images": [
+        {
+          "format": "product",
+          "url": "/medias/wl-001.png"
+        }
+      ],
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.7,
+        "totalReviews": 42
+      },
+      "description": "<p>Итальянское вино с нотами вишни и специй.</p>",
+      "classifications": [
+        {
+          "features": [
+            {
+              "name": "Страна",
+              "featureValues": [
+                {
+                  "value": "Италия"
+                }
+              ]
+            },
+            {
+              "name": "Регион",
+              "featureValues": [
+                {
+                  "value": "Тоскана"
+                }
+              ]
+            },
+            {
+              "name": "Цвет",
+              "featureValues": [
+                {
+                  "value": "Красное"
+                }
+              ]
+            },
+            {
+              "name": "Содержание сахара",
+              "featureValues": [
+                {
+                  "value": "Сухое"
+                }
+              ]
+            },
+            {
+              "name": "Сорт винограда",
+              "featureValues": [
+                {
+                  "value": "Санджовезе"
+                }
+              ]
+            },
+            {
+              "name": "Объем",
+              "featureValues": [
+                {
+                  "value": "750 мл"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "potentialPromotions": [
+        {
+          "code": "AUTUMN10",
+          "title": null,
+          "promotionType": "Рекламная акция на основе правил",
+          "priority": 150000
+        }
+      ]
+    },
+    {
+      "code": "wl-002",
+      "name": "Вино Casa Verde Sauvignon Blanc белое сухое, 750 мл",
+      "brand": {
+        "name": "Casa Verde"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 899
+      },
+      "country": "Чили",
+      "region": "Центральная долина",
+      "color": "Белое",
+      "sugarType": "Сухое",
+      "grape": "Совиньон Блан",
+      "volume": "750 мл",
+      "description": "Тестовое вино Casa Verde: Совиньон Блан, Центральная долина.",
+      "url": "/product/wl-002",
+      "primaryImage": {
+        "url": "/medias/wl-002.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.4,
+        "totalReviews": 96
+      },
+      "oldPrice": {
+        "value": 1099
+      }
+    },
+    {
+      "code": "wl-003",
+      "name": "Вино Alazani Garden красное полусладкое, 750 мл",
+      "brand": {
+        "name": "Alazani Garden"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 749
+      },
+      "country": "Грузия",
+      "region": "Кахетия",
+      "color": "Красное",
+      "sugarType": "Полусладкое",
+      "grape": "Саперави",
+      "volume": "750 мл",
+      "description": "Тестовое вино Alazani Garden: Саперави, Кахетия.",
+      "url": "/product/wl-003",
+      "primaryImage": {
+        "url": "/medias/wl-003.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.5,
+        "totalReviews": 121
+      }
+    },
+    {
+      "code": "wl-004",
+      "name": "Вино Rhine Valley Riesling белое полусухое, 750 мл",
+      "brand": {
+        "name": "Rhine Valley"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1199
+      },
+      "country": "Германия",
+      "region": "Мозель",
+      "color": "Белое",
+      "sugarType": "Полусухое",
+      "grape": "Рислинг",
+      "volume": "750 мл",
+      "description": "Тестовое вино Rhine Valley: Рислинг, Мозель.",
+      "url": "/product/wl-004",
+      "primaryImage": {
+        "url": "/medias/wl-004.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.6,
+        "totalReviews": 88
+      },
+      "oldPrice": {
+        "value": 1399
+      }
+    },
+    {
+      "code": "wl-005",
+      "name": "Вино Provence Lumiere Rose розовое сухое, 750 мл",
+      "brand": {
+        "name": "Lumiere"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1499
+      },
+      "country": "Франция",
+      "region": "Прованс",
+      "color": "Розовое",
+      "sugarType": "Сухое",
+      "grape": "Гренаш, Сенсо",
+      "volume": "750 мл",
+      "description": "Тестовое вино Lumiere: Гренаш, Сенсо, Прованс.",
+      "url": "/product/wl-005",
+      "primaryImage": {
+        "url": "/medias/wl-005.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.8,
+        "totalReviews": 57
+      }
+    },
+    {
+      "code": "wl-006",
+      "name": "Вино Mendoza Peak Malbec красное сухое, 750 мл",
+      "brand": {
+        "name": "Mendoza Peak"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1099
+      },
+      "country": "Аргентина",
+      "region": "Мендоса",
+      "color": "Красное",
+      "sugarType": "Сухое",
+      "grape": "Мальбек",
+      "volume": "750 мл",
+      "description": "Тестовое вино Mendoza Peak: Мальбек, Мендоса.",
+      "url": "/product/wl-006",
+      "primaryImage": {
+        "url": "/medias/wl-006.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.7,
+        "totalReviews": 203
+      },
+      "oldPrice": {
+        "value": 1299
+      }
+    },
+    {
+      "code": "wl-007",
+      "name": "Вино Rioja Camino Tempranillo красное сухое, 750 мл",
+      "brand": {
+        "name": "Camino"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1349
+      },
+      "country": "Испания",
+      "region": "Риоха",
+      "color": "Красное",
+      "sugarType": "Сухое",
+      "grape": "Темпранильо",
+      "volume": "750 мл",
+      "description": "Тестовое вино Camino: Темпранильо, Риоха.",
+      "url": "/product/wl-007",
+      "primaryImage": {
+        "url": "/medias/wl-007.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.3,
+        "totalReviews": 75
+      }
+    },
+    {
+      "code": "wl-008",
+      "name": "Вино Marlborough Coast Pinot Gris белое полусухое, 750 мл",
+      "brand": {
+        "name": "Marlborough Coast"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1699
+      },
+      "country": "Новая Зеландия",
+      "region": "Марлборо",
+      "color": "Белое",
+      "sugarType": "Полусухое",
+      "grape": "Пино Гри",
+      "volume": "750 мл",
+      "description": "Тестовое вино Marlborough Coast: Пино Гри, Марлборо.",
+      "url": "/product/wl-008",
+      "primaryImage": {
+        "url": "/medias/wl-008.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.8,
+        "totalReviews": 64
+      }
+    },
+    {
+      "code": "wl-009",
+      "name": "Вино Cape Sun Chenin Blanc белое сухое, 750 мл",
+      "brand": {
+        "name": "Cape Sun"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 799
+      },
+      "country": "ЮАР",
+      "region": "Западный Кейп",
+      "color": "Белое",
+      "sugarType": "Сухое",
+      "grape": "Шенен Блан",
+      "volume": "750 мл",
+      "description": "Тестовое вино Cape Sun: Шенен Блан, Западный Кейп.",
+      "url": "/product/wl-009",
+      "primaryImage": {
+        "url": "/medias/wl-009.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.1,
+        "totalReviews": 134
+      }
+    },
+    {
+      "code": "wl-010",
+      "name": "Вино Kakheti Gold Rkatsiteli белое сухое, 750 мл",
+      "brand": {
+        "name": "Kakheti Gold"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 699
+      },
+      "country": "Грузия",
+      "region": "Кахетия",
+      "color": "Белое",
+      "sugarType": "Сухое",
+      "grape": "Ркацители",
+      "volume": "750 мл",
+      "description": "Тестовое вино Kakheti Gold: Ркацители, Кахетия.",
+      "url": "/product/wl-010",
+      "primaryImage": {
+        "url": "/medias/wl-010.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.2,
+        "totalReviews": 187
+      }
+    },
+    {
+      "code": "wl-011",
+      "name": "Вино Bordeaux Reserve Merlot красное сухое, 750 мл",
+      "brand": {
+        "name": "Bordeaux Reserve"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1899
+      },
+      "country": "Франция",
+      "region": "Бордо",
+      "color": "Красное",
+      "sugarType": "Сухое",
+      "grape": "Мерло",
+      "volume": "750 мл",
+      "description": "Тестовое вино Bordeaux Reserve: Мерло, Бордо.",
+      "url": "/product/wl-011",
+      "primaryImage": {
+        "url": "/medias/wl-011.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.9,
+        "totalReviews": 51
+      },
+      "oldPrice": {
+        "value": 2199
+      }
+    },
+    {
+      "code": "wl-012",
+      "name": "Вино Veneto Fiore Pinot Grigio белое сухое, 750 мл",
+      "brand": {
+        "name": "Veneto Fiore"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 949
+      },
+      "country": "Италия",
+      "region": "Венето",
+      "color": "Белое",
+      "sugarType": "Сухое",
+      "grape": "Пино Гриджио",
+      "volume": "750 мл",
+      "description": "Тестовое вино Veneto Fiore: Пино Гриджио, Венето.",
+      "url": "/product/wl-012",
+      "primaryImage": {
+        "url": "/medias/wl-012.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.4,
+        "totalReviews": 166
+      }
+    },
+    {
+      "code": "wl-013",
+      "name": "Вино Pink Valley Zinfandel розовое полусладкое, 750 мл",
+      "brand": {
+        "name": "Pink Valley"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 999
+      },
+      "country": "США",
+      "region": "Калифорния",
+      "color": "Розовое",
+      "sugarType": "Полусладкое",
+      "grape": "Зинфандель",
+      "volume": "750 мл",
+      "description": "Тестовое вино Pink Valley: Зинфандель, Калифорния.",
+      "url": "/product/wl-013",
+      "primaryImage": {
+        "url": "/medias/wl-013.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.2,
+        "totalReviews": 219
+      }
+    },
+    {
+      "code": "wl-014",
+      "name": "Вино Tokaj Crown Furmint белое сладкое, 500 мл",
+      "brand": {
+        "name": "Tokaj Crown"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1599
+      },
+      "country": "Венгрия",
+      "region": "Токай",
+      "color": "Белое",
+      "sugarType": "Сладкое",
+      "grape": "Фурминт",
+      "volume": "500 мл",
+      "description": "Тестовое вино Tokaj Crown: Фурминт, Токай.",
+      "url": "/product/wl-014",
+      "primaryImage": {
+        "url": "/medias/wl-014.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.9,
+        "totalReviews": 39
+      }
+    },
+    {
+      "code": "wl-015",
+      "name": "Вино Douro Selection Touriga красное сухое, 750 мл",
+      "brand": {
+        "name": "Douro Selection"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1999
+      },
+      "country": "Португалия",
+      "region": "Дору",
+      "color": "Красное",
+      "sugarType": "Сухое",
+      "grape": "Турига Насьональ",
+      "volume": "750 мл",
+      "description": "Тестовое вино Douro Selection: Турига Насьональ, Дору.",
+      "url": "/product/wl-015",
+      "primaryImage": {
+        "url": "/medias/wl-015.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.8,
+        "totalReviews": 59
+      }
+    },
+    {
+      "code": "wl-016",
+      "name": "Вино Berry Kiss Rose розовое полусладкое, 750 мл",
+      "brand": {
+        "name": "Berry Kiss"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 799
+      },
+      "country": "Испания",
+      "region": "Валенсия",
+      "color": "Розовое",
+      "sugarType": "Полусладкое",
+      "grape": "Бобаль",
+      "volume": "750 мл",
+      "description": "Тестовое вино Berry Kiss: Бобаль, Валенсия.",
+      "url": "/product/wl-016",
+      "primaryImage": {
+        "url": "/medias/wl-016.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.3,
+        "totalReviews": 126
+      }
+    },
+    {
+      "code": "wl-017",
+      "name": "Вино Kuban Estate Cabernet красное сухое, 750 мл",
+      "brand": {
+        "name": "Kuban Estate"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 649
+      },
+      "country": "Россия",
+      "region": "Краснодарский край",
+      "color": "Красное",
+      "sugarType": "Сухое",
+      "grape": "Каберне Совиньон",
+      "volume": "750 мл",
+      "description": "Тестовое вино Kuban Estate: Каберне Совиньон, Краснодарский край.",
+      "url": "/product/wl-017",
+      "primaryImage": {
+        "url": "/medias/wl-017.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4,
+        "totalReviews": 278
+      }
+    },
+    {
+      "code": "wl-018",
+      "name": "Вино Don Valley Muscat белое полусладкое, 750 мл",
+      "brand": {
+        "name": "Don Valley"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 599
+      },
+      "country": "Россия",
+      "region": "Ростовская область",
+      "color": "Белое",
+      "sugarType": "Полусладкое",
+      "grape": "Мускат",
+      "volume": "750 мл",
+      "description": "Тестовое вино Don Valley: Мускат, Ростовская область.",
+      "url": "/product/wl-018",
+      "primaryImage": {
+        "url": "/medias/wl-018.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 3.9,
+        "totalReviews": 305
+      }
+    },
+    {
+      "code": "wl-019",
+      "name": "Вино Barossa Hill Shiraz красное сухое, 750 мл",
+      "brand": {
+        "name": "Barossa Hill"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1799
+      },
+      "country": "Австралия",
+      "region": "Долина Баросса",
+      "color": "Красное",
+      "sugarType": "Сухое",
+      "grape": "Шираз",
+      "volume": "750 мл",
+      "description": "Тестовое вино Barossa Hill: Шираз, Долина Баросса.",
+      "url": "/product/wl-019",
+      "primaryImage": {
+        "url": "/medias/wl-019.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.7,
+        "totalReviews": 91
+      }
+    },
+    {
+      "code": "wl-020",
+      "name": "Вино Wachau Terrace Gruner Veltliner белое сухое, 750 мл",
+      "brand": {
+        "name": "Wachau Terrace"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1549
+      },
+      "country": "Австрия",
+      "region": "Вахау",
+      "color": "Белое",
+      "sugarType": "Сухое",
+      "grape": "Грюнер Вельтлинер",
+      "volume": "750 мл",
+      "description": "Тестовое вино Wachau Terrace: Грюнер Вельтлинер, Вахау.",
+      "url": "/product/wl-020",
+      "primaryImage": {
+        "url": "/medias/wl-020.png"
+      },
+      "stock": {
+        "stockLevelStatus": "outOfStock"
+      },
+      "ratingData": {
+        "averageRating": 4.6,
+        "totalReviews": 47
+      }
+    },
+    {
+      "code": "wl-021",
+      "name": "Вино Loire Jardin Chenin Blanc белое полусладкое, 750 мл",
+      "brand": {
+        "name": "Loire Jardin"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1399
+      },
+      "country": "Франция",
+      "region": "Долина Луары",
+      "color": "Белое",
+      "sugarType": "Полусладкое",
+      "grape": "Шенен Блан",
+      "volume": "750 мл",
+      "description": "Тестовое вино Loire Jardin: Шенен Блан, Долина Луары.",
+      "url": "/product/wl-021",
+      "primaryImage": {
+        "url": "/medias/wl-021.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.5,
+        "totalReviews": 73
+      }
+    },
+    {
+      "code": "wl-022",
+      "name": "Вино Sicily Nero d'Avola красное полусухое, 750 мл",
+      "brand": {
+        "name": "Sicily Terra"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1049
+      },
+      "country": "Италия",
+      "region": "Сицилия",
+      "color": "Красное",
+      "sugarType": "Полусухое",
+      "grape": "Неро д'Авола",
+      "volume": "750 мл",
+      "description": "Тестовое вино Sicily Terra: Неро д'Авола, Сицилия.",
+      "url": "/product/wl-022",
+      "primaryImage": {
+        "url": "/medias/wl-022.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.4,
+        "totalReviews": 112
+      }
+    },
+    {
+      "code": "wl-023",
+      "name": "Вино Armenia Areni Reserve красное сухое, 750 мл",
+      "brand": {
+        "name": "Ararat Cellars"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1249
+      },
+      "country": "Армения",
+      "region": "Вайоц Дзор",
+      "color": "Красное",
+      "sugarType": "Сухое",
+      "grape": "Арени",
+      "volume": "750 мл",
+      "description": "Тестовое вино Ararat Cellars: Арени, Вайоц Дзор.",
+      "url": "/product/wl-023",
+      "primaryImage": {
+        "url": "/medias/wl-023.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.6,
+        "totalReviews": 84
+      }
+    },
+    {
+      "code": "wl-024",
+      "name": "Вино Peloponnese Sun Moschofilero белое сухое, 750 мл",
+      "brand": {
+        "name": "Peloponnese Sun"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1299
+      },
+      "country": "Греция",
+      "region": "Пелопоннес",
+      "color": "Белое",
+      "sugarType": "Сухое",
+      "grape": "Мосхофилеро",
+      "volume": "750 мл",
+      "description": "Тестовое вино Peloponnese Sun: Мосхофилеро, Пелопоннес.",
+      "url": "/product/wl-024",
+      "primaryImage": {
+        "url": "/medias/wl-024.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.3,
+        "totalReviews": 44
+      }
+    },
+    {
+      "code": "wl-025",
+      "name": "Вино Colchagua Carmenere красное сухое, 750 мл",
+      "brand": {
+        "name": "Colchagua Hills"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1149
+      },
+      "country": "Чили",
+      "region": "Кольчагуа",
+      "color": "Красное",
+      "sugarType": "Сухое",
+      "grape": "Карменер",
+      "volume": "750 мл",
+      "description": "Тестовое вино Colchagua Hills: Карменер, Кольчагуа.",
+      "url": "/product/wl-025",
+      "primaryImage": {
+        "url": "/medias/wl-025.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.5,
+        "totalReviews": 156
+      },
+      "oldPrice": {
+        "value": 1449
+      }
+    },
+    {
+      "code": "wl-026",
+      "name": "Вино Galicia Breeze Albarino белое сухое, 750 мл",
+      "brand": {
+        "name": "Galicia Breeze"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1749
+      },
+      "country": "Испания",
+      "region": "Риас-Байшас",
+      "color": "Белое",
+      "sugarType": "Сухое",
+      "grape": "Альбариньо",
+      "volume": "750 мл",
+      "description": "Тестовое вино Galicia Breeze: Альбариньо, Риас-Байшас.",
+      "url": "/product/wl-026",
+      "primaryImage": {
+        "url": "/medias/wl-026.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.8,
+        "totalReviews": 68
+      }
+    },
+    {
+      "code": "wl-027",
+      "name": "Вино Piedmont Barbera красное сухое, 750 мл",
+      "brand": {
+        "name": "Piedmont House"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1649
+      },
+      "country": "Италия",
+      "region": "Пьемонт",
+      "color": "Красное",
+      "sugarType": "Сухое",
+      "grape": "Барбера",
+      "volume": "750 мл",
+      "description": "Тестовое вино Piedmont House: Барбера, Пьемонт.",
+      "url": "/product/wl-027",
+      "primaryImage": {
+        "url": "/medias/wl-027.png"
+      },
+      "stock": {
+        "stockLevelStatus": "outOfStock"
+      },
+      "ratingData": {
+        "averageRating": 4.7,
+        "totalReviews": 53
+      }
+    },
+    {
+      "code": "wl-028",
+      "name": "Вино Alsace Fleur Gewurztraminer белое полусладкое, 750 мл",
+      "brand": {
+        "name": "Alsace Fleur"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1849
+      },
+      "country": "Франция",
+      "region": "Эльзас",
+      "color": "Белое",
+      "sugarType": "Полусладкое",
+      "grape": "Гевюрцтраминер",
+      "volume": "750 мл",
+      "description": "Тестовое вино Alsace Fleur: Гевюрцтраминер, Эльзас.",
+      "url": "/product/wl-028",
+      "primaryImage": {
+        "url": "/medias/wl-028.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.9,
+        "totalReviews": 77
+      }
+    },
+    {
+      "code": "wl-029",
+      "name": "Вино Navarra Garnacha Rose розовое сухое, 750 мл",
+      "brand": {
+        "name": "Navarra Campo"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 849
+      },
+      "country": "Испания",
+      "region": "Наварра",
+      "color": "Розовое",
+      "sugarType": "Сухое",
+      "grape": "Гарнача",
+      "volume": "750 мл",
+      "description": "Тестовое вино Navarra Campo: Гарнача, Наварра.",
+      "url": "/product/wl-029",
+      "primaryImage": {
+        "url": "/medias/wl-029.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.1,
+        "totalReviews": 143
+      }
+    },
+    {
+      "code": "wl-030",
+      "name": "Вино Moldova Codru Feteasca Neagra красное полусухое, 750 мл",
+      "brand": {
+        "name": "Codru Cellar"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 749
+      },
+      "country": "Молдова",
+      "region": "Кодру",
+      "color": "Красное",
+      "sugarType": "Полусухое",
+      "grape": "Фетяска Нягрэ",
+      "volume": "750 мл",
+      "description": "Тестовое вино Codru Cellar: Фетяска Нягрэ, Кодру.",
+      "url": "/product/wl-030",
+      "primaryImage": {
+        "url": "/medias/wl-030.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4,
+        "totalReviews": 198
+      }
+    },
+    {
+      "code": "wl-031",
+      "name": "Вино Santorini Stone Assyrtiko белое сухое, 750 мл",
+      "brand": {
+        "name": "Santorini Stone"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 2199
+      },
+      "country": "Греция",
+      "region": "Санторини",
+      "color": "Белое",
+      "sugarType": "Сухое",
+      "grape": "Асиртико",
+      "volume": "750 мл",
+      "description": "Тестовое вино Santorini Stone: Асиртико, Санторини.",
+      "url": "/product/wl-031",
+      "primaryImage": {
+        "url": "/medias/wl-031.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.9,
+        "totalReviews": 32
+      }
+    },
+    {
+      "code": "wl-032",
+      "name": "Вино Kakheti Kindzmarauli красное полусладкое, 750 мл",
+      "brand": {
+        "name": "Kakheti Marani"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 999
+      },
+      "country": "Грузия",
+      "region": "Кварели",
+      "color": "Красное",
+      "sugarType": "Полусладкое",
+      "grape": "Саперави",
+      "volume": "750 мл",
+      "description": "Тестовое вино Kakheti Marani: Саперави, Кварели.",
+      "url": "/product/wl-032",
+      "primaryImage": {
+        "url": "/medias/wl-032.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.6,
+        "totalReviews": 245
+      }
+    },
+    {
+      "code": "wl-033",
+      "name": "Вино Mosel Slate Riesling белое сладкое, 750 мл",
+      "brand": {
+        "name": "Mosel Slate"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1999
+      },
+      "country": "Германия",
+      "region": "Мозель",
+      "color": "Белое",
+      "sugarType": "Сладкое",
+      "grape": "Рислинг",
+      "volume": "750 мл",
+      "description": "Тестовое вино Mosel Slate: Рислинг, Мозель.",
+      "url": "/product/wl-033",
+      "primaryImage": {
+        "url": "/medias/wl-033.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.8,
+        "totalReviews": 61
+      }
+    },
+    {
+      "code": "wl-034",
+      "name": "Вино Puglia Primitivo красное полусухое, 750 мл",
+      "brand": {
+        "name": "Puglia Sole"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1199
+      },
+      "country": "Италия",
+      "region": "Апулия",
+      "color": "Красное",
+      "sugarType": "Полусухое",
+      "grape": "Примитиво",
+      "volume": "750 мл",
+      "description": "Тестовое вино Puglia Sole: Примитиво, Апулия.",
+      "url": "/product/wl-034",
+      "primaryImage": {
+        "url": "/medias/wl-034.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.5,
+        "totalReviews": 174
+      }
+    },
+    {
+      "code": "wl-035",
+      "name": "Вино Casablanca Chardonnay белое сухое, 750 мл",
+      "brand": {
+        "name": "Casablanca Pacific"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1099
+      },
+      "country": "Чили",
+      "region": "Касабланка",
+      "color": "Белое",
+      "sugarType": "Сухое",
+      "grape": "Шардоне",
+      "volume": "750 мл",
+      "description": "Тестовое вино Casablanca Pacific: Шардоне, Касабланка.",
+      "url": "/product/wl-035",
+      "primaryImage": {
+        "url": "/medias/wl-035.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.4,
+        "totalReviews": 137
+      },
+      "oldPrice": {
+        "value": 1399
+      }
+    },
+    {
+      "code": "wl-036",
+      "name": "Вино Oregon Valley Pinot Noir красное сухое, 750 мл",
+      "brand": {
+        "name": "Oregon Valley"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 2499
+      },
+      "country": "США",
+      "region": "Орегон",
+      "color": "Красное",
+      "sugarType": "Сухое",
+      "grape": "Пино Нуар",
+      "volume": "750 мл",
+      "description": "Тестовое вино Oregon Valley: Пино Нуар, Орегон.",
+      "url": "/product/wl-036",
+      "primaryImage": {
+        "url": "/medias/wl-036.png"
+      },
+      "stock": {
+        "stockLevelStatus": "outOfStock"
+      },
+      "ratingData": {
+        "averageRating": 4.9,
+        "totalReviews": 28
+      }
+    },
+    {
+      "code": "wl-037",
+      "name": "Вино Anapa Breeze Rose розовое полусухое, 750 мл",
+      "brand": {
+        "name": "Anapa Breeze"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 699
+      },
+      "country": "Россия",
+      "region": "Анапа",
+      "color": "Розовое",
+      "sugarType": "Полусухое",
+      "grape": "Цветочный, Каберне",
+      "volume": "750 мл",
+      "description": "Тестовое вино Anapa Breeze: Цветочный, Каберне, Анапа.",
+      "url": "/product/wl-037",
+      "primaryImage": {
+        "url": "/medias/wl-037.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.1,
+        "totalReviews": 211
+      }
+    },
+    {
+      "code": "wl-038",
+      "name": "Вино Lisbon Atlantic Arinto белое сухое, 750 мл",
+      "brand": {
+        "name": "Lisbon Atlantic"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 949
+      },
+      "country": "Португалия",
+      "region": "Лиссабон",
+      "color": "Белое",
+      "sugarType": "Сухое",
+      "grape": "Аринту",
+      "volume": "750 мл",
+      "description": "Тестовое вино Lisbon Atlantic: Аринту, Лиссабон.",
+      "url": "/product/wl-038",
+      "primaryImage": {
+        "url": "/medias/wl-038.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.3,
+        "totalReviews": 82
+      }
+    },
+    {
+      "code": "wl-039",
+      "name": "Вино Beaujolais Village Gamay красное сухое, 750 мл",
+      "brand": {
+        "name": "Beaujolais Village"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 1799
+      },
+      "country": "Франция",
+      "region": "Божоле",
+      "color": "Красное",
+      "sugarType": "Сухое",
+      "grape": "Гаме",
+      "volume": "750 мл",
+      "description": "Тестовое вино Beaujolais Village: Гаме, Божоле.",
+      "url": "/product/wl-039",
+      "primaryImage": {
+        "url": "/medias/wl-039.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 4.6,
+        "totalReviews": 66
+      }
+    },
+    {
+      "code": "wl-040",
+      "name": "Вино Sauternes Golden Semillon белое сладкое, 375 мл",
+      "brand": {
+        "name": "Sauternes Golden"
+      },
+      "price": {
+        "currencyIso": "RUB",
+        "value": 2799
+      },
+      "country": "Франция",
+      "region": "Сотерн",
+      "color": "Белое",
+      "sugarType": "Сладкое",
+      "grape": "Семильон",
+      "volume": "375 мл",
+      "description": "Тестовое вино Sauternes Golden: Семильон, Сотерн.",
+      "url": "/product/wl-040",
+      "primaryImage": {
+        "url": "/medias/wl-040.png"
+      },
+      "stock": {
+        "stockLevelStatus": "inStock"
+      },
+      "ratingData": {
+        "averageRating": 5,
+        "totalReviews": 24
+      },
+      "oldPrice": {
+        "value": 3199
+      }
+    }
+  ]
+}
