@@ -22,6 +22,8 @@ class Settings:
     price_weight: float = float(os.getenv("RANKING_PRICE_WEIGHT", "0.25"))
     popularity_weight: float = float(os.getenv("RANKING_POPULARITY_WEIGHT", "0.20"))
     preference_boost: float = float(os.getenv("RANKING_PREFERENCE_BOOST", "0.05"))
+    ml_personalization_weight: float = float(os.getenv("ML_PERSONALIZATION_WEIGHT", "0.65"))
+    ml_train_on_startup: bool = _bool_env("ML_TRAIN_ON_STARTUP")
 
 
 settings = Settings()

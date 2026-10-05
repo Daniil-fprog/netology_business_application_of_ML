@@ -111,6 +111,17 @@ class Repository:
         pairs = [(color, sugar) for color, sugar in rows if color and sugar]
         return Counter(pairs).most_common(1)[0][0] if pairs else None
 
+    def liked_wine_ids(self, user_id: int) -> set[int]:
+        return set(
+            self.session.scalars(select(UserLike.wine_id).where(UserLike.user_id == user_id))
+        )
+
+    def likes_by_user(self) -> dict[int, set[int]]:
+        result: dict[int, set[int]] = {}
+        for user_id, wine_id in self.session.execute(select(UserLike.user_id, UserLike.wine_id)):
+            result.setdefault(user_id, set()).add(wine_id)
+        return result
+
     def save_event(
         self, user_id: int | None, raw_query: str, parsed: dict[str, object], wine_ids: list[int]
     ) -> None:

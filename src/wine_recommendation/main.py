@@ -10,7 +10,10 @@ from fastapi.staticfiles import StaticFiles
 from wine_recommendation.api.routes import recommendations, system, wines
 from wine_recommendation.core.config import settings
 from wine_recommendation.core.logging import configure_logging
+from wine_recommendation.db.repositories import Repository
 from wine_recommendation.db.repositories.repository import ConflictError, NotFoundError
+from wine_recommendation.db.session import SessionLocal
+from wine_recommendation.ml import train_recommender
 from wine_recommendation.parser.base import SourceError
 from wine_recommendation.query_parser.parser import QueryParseError
 
@@ -22,6 +25,15 @@ static_dir = Path(__file__).parent / "static"
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     logger.info("Application started")
+    if settings.ml_train_on_startup:
+        with SessionLocal() as session:
+            result = train_recommender(Repository(session))
+        logger.info(
+            "ML model trained: %d wines, %d users, %d likes",
+            result.wines_count,
+            result.users_count,
+            result.likes_count,
+        )
     yield
     logger.info("Application stopped")
 

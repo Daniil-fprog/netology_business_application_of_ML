@@ -1,5 +1,6 @@
 from datetime import datetime
 from decimal import Decimal
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -86,9 +87,18 @@ class RecommendationRead(BaseModel):
 
 class RecommendationResponse(BaseModel):
     parsed_query: WineQuery
+    recommendation_mode: Literal["standard", "ml"]
     recommendations: list[RecommendationRead]
 
 
 class ParserUpdateResponse(BaseModel):
     source: str
     updated: int
+
+
+class MLTrainingResponse(BaseModel):
+    status: Literal["trained"] = "trained"
+    trained_at: datetime
+    wines_count: int
+    users_count: int
+    likes_count: int

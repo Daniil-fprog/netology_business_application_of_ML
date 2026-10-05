@@ -23,18 +23,20 @@
 
 ## Wine Recommendation Service
 
-MVP-сервис подбора вина. Он разбирает запрос на русском языке, фильтрует каталог и возвращает TOP-N. Лайки сохраняются и дают небольшой бонус любимой паре `color + sugar_type`.
+MVP-сервис подбора вина. Он разбирает запрос на русском языке, фильтрует каталог и возвращает TOP-N. Content-based ML-модель обучает профиль пользователя на его лайках и поднимает похожие вина. Без лайков используется стандартный ranking.
 
 ### Архитектура
 
 ```text
 JSON source -> WineSource -> normalize -> Repository -> PostgreSQL
 User query -> QueryParser -> filter -> weighted ranking -> TOP-N -> API
+User likes -> ML user profile -> cosine similarity -----^
 ```
 
 - `api` — FastAPI routes и HTTP-схемы.
 - `query_parser` — rule-based parser за интерфейсом `QueryParser`.
 - `recommendation` — фильтрация и ranking.
+- `ml` — обучение content-based модели и ML-scoring.
 - `parser` — сменяемый `WineSource`, загрузчик JSON-мока и pipeline upsert.
 - `db` — SQLAlchemy-модели и repository; `alembic` — миграции.
 
@@ -74,12 +76,21 @@ poetry run uvicorn wine_recommendation.main:app --reload
 - `POST /users/{id}/likes`, `DELETE /users/{id}/likes/{wine_id}`
 - `POST /recommendations`
 - `POST /parser/update`
+- `POST /ml/retrain`
 
 ```bash
 curl -X POST http://localhost:8000/recommendations \
   -H 'Content-Type: application/json' \
   -d '{"query":"красное сухое до 1500","limit":5}'
 ```
+
+Для переобучения модели на текущем каталоге и лайках:
+
+```bash
+curl -X POST http://localhost:8000/ml/retrain
+```
+
+Поле `recommendation_mode` в ответе имеет значение `ml` или `standard`.
 
 ### Загрузка каталога
 

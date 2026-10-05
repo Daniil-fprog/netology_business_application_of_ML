@@ -71,3 +71,82 @@ def test_recommendation_flow() -> None:
     body = response.json()
     assert body["parsed_query"]["color"] == "red"
     assert body["recommendations"][0]["name"] == "Test Red"
+    assert body["recommendation_mode"] == "standard"
+
+
+def test_ml_retrain_and_personalized_recommendations() -> None:
+    engine = create_engine(
+        "sqlite+pysqlite:///:memory:",
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool,
+    )
+    Base.metadata.create_all(engine)
+    with Session(engine) as session:
+        repository = Repository(session)
+        repository.upsert_wines(
+            [
+                ParsedWine(
+                    external_id="liked-red",
+                    name="Liked Red",
+                    price=Decimal("1000"),
+                    color="red",
+                    sugar_type="dry",
+                    country="Italy",
+                    grape="Sangiovese",
+                    rating=4.5,
+                    reviews_count=10,
+                ),
+                ParsedWine(
+                    external_id="similar-red",
+                    name="Similar Red",
+                    price=Decimal("1000"),
+                    color="red",
+                    sugar_type="dry",
+                    country="Italy",
+                    grape="Sangiovese",
+                    rating=4.5,
+                    reviews_count=10,
+                ),
+                ParsedWine(
+                    external_id="different-white",
+                    name="Different White",
+                    price=Decimal("1000"),
+                    color="white",
+                    sugar_type="sweet",
+                    country="Germany",
+                    grape="Riesling",
+                    rating=4.5,
+                    reviews_count=10,
+                ),
+            ],
+            "test",
+        )
+        user = repository.create_user("ml-user", "ML User")
+        user_without_likes = repository.create_user("cold-user", "Cold User")
+        liked_wine = repository.list_wines(limit=1)[0]
+        repository.add_like(user.id, liked_wine.id)
+        app.dependency_overrides[get_repository] = lambda: repository
+        try:
+            with TestClient(app) as client:
+                training_response = client.post("/ml/retrain")
+                personalized_response = client.post(
+                    "/recommendations",
+                    json={"user_id": user.id, "query": "вино до 2000", "limit": 3},
+                )
+                fallback_response = client.post(
+                    "/recommendations",
+                    json={"user_id": user_without_likes.id, "query": "вино до 2000"},
+                )
+        finally:
+            app.dependency_overrides.clear()
+
+    assert training_response.status_code == 200
+    assert training_response.json()["users_count"] == 1
+    assert training_response.json()["likes_count"] == 1
+    assert personalized_response.status_code == 200
+    personalized_body = personalized_response.json()
+    assert personalized_body["recommendation_mode"] == "ml"
+    assert personalized_body["recommendations"][0]["name"] == "Similar Red"
+    assert "Liked Red" not in [item["name"] for item in personalized_body["recommendations"]]
+    assert fallback_response.status_code == 200
+    assert fallback_response.json()["recommendation_mode"] == "standard"

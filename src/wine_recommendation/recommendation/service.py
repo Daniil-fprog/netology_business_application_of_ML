@@ -15,28 +15,46 @@ class RecommendationService:
         query: WineQuery,
         limit: int = 5,
         preferred_pair: tuple[str, str] | None = None,
+        personalized_scores: dict[int, float] | None = None,
+        excluded_wine_ids: set[int] | None = None,
+        personalization_weight: float = 0.65,
     ) -> list[WineRecommendation]:
         if limit < 1:
             raise ValueError("limit must be positive")
-        filtered = [wine for wine in candidates if self._matches(wine, query)]
-        max_reviews = max((wine.reviews_count for wine in filtered), default=0)
-        ranked = [
-            WineRecommendation(
-                wine_id=wine.wine_id,
-                name=wine.name,
-                price=wine.price,
-                rating=wine.rating,
-                color=wine.color,
-                sugar_type=wine.sugar_type,
-                brand=wine.brand,
-                country=wine.country,
-                grape=wine.grape,
-                image_url=wine.image_url,
-                product_url=wine.product_url,
-                score=calculate_score(wine, query, self.weights, max_reviews, preferred_pair),
-            )
-            for wine in filtered
+        if not 0 <= personalization_weight <= 1:
+            raise ValueError("personalization_weight must be between 0 and 1")
+        excluded = excluded_wine_ids or set()
+        filtered = [
+            wine
+            for wine in candidates
+            if wine.wine_id not in excluded and self._matches(wine, query)
         ]
+        max_reviews = max((wine.reviews_count for wine in filtered), default=0)
+        ranked: list[WineRecommendation] = []
+        for wine in filtered:
+            standard_score = calculate_score(wine, query, self.weights, max_reviews, preferred_pair)
+            ml_score = personalized_scores.get(wine.wine_id) if personalized_scores else None
+            score = (
+                (1 - personalization_weight) * standard_score + personalization_weight * ml_score
+                if ml_score is not None
+                else standard_score
+            )
+            ranked.append(
+                WineRecommendation(
+                    wine_id=wine.wine_id,
+                    name=wine.name,
+                    price=wine.price,
+                    rating=wine.rating,
+                    color=wine.color,
+                    sugar_type=wine.sugar_type,
+                    brand=wine.brand,
+                    country=wine.country,
+                    grape=wine.grape,
+                    image_url=wine.image_url,
+                    product_url=wine.product_url,
+                    score=round(score, 6),
+                )
+            )
         return sorted(ranked, key=lambda item: (-item.score, item.wine_id))[:limit]
 
     @staticmethod
