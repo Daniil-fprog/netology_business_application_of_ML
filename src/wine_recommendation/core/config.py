@@ -17,7 +17,7 @@ class Settings:
     parser_timeout: float = float(os.getenv("PARSER_TIMEOUT", "15"))
     parser_user_agent: str = os.getenv("PARSER_USER_AGENT", "WineRecommendationMVP/0.1")
     parser_enabled: bool = _bool_env("PARSER_ENABLED")
-    perekrestok_api_url: str = os.getenv("PEREKRESTOK_API_URL", "")
+    mock_json_data: str = os.getenv("MOCK_JSON_DATA", "")
     rating_weight: float = float(os.getenv("RANKING_RATING_WEIGHT", "0.55"))
     price_weight: float = float(os.getenv("RANKING_PRICE_WEIGHT", "0.25"))
     popularity_weight: float = float(os.getenv("RANKING_POPULARITY_WEIGHT", "0.20"))

@@ -81,23 +81,20 @@ curl -X POST http://localhost:8000/recommendations \
   -d '{"query":"красное сухое до 1500","limit":5}'
 ```
 
-### Обновление каталога
+### Загрузка каталога
 
-Для локальной разработки используется JSON-мок, который уже включён в проект:
+По умолчанию внешний парсер выключен, а локальный JSON-мок загружается в БД
+автоматически после применения миграций при каждом старте API:
 
 ```dotenv
-PARSER_ENABLED=true
-PEREKRESTOK_API_URL=src/wine_recommendation/data/mock_wines.json
-PARSER_USER_AGENT=WineRecommendationMVP/0.1 (+your-contact@example.com)
+PARSER_ENABLED=false
+MOCK_JSON_DATA=src/wine_recommendation/data/mock_wines.json
 ```
 
-Источник может быть локальным JSON-файлом либо разрешённым HTTP(S)-endpoint. Формат — JSON-массив или объект с `items`/`products`. Встроенный мок содержит 16 вин разных цветов, типов сахара и цен. Повторный запуск обновляет Wine/WineOffer; исчезнувшие из snapshot товары становятся недоступными.
-
-```bash
-docker compose run --rm api python scripts/update_parser.py
-# либо при запущенном API:
-curl -X POST http://localhost:8000/parser/update
-```
+Встроенный мок содержит 16 вин разных цветов, типов сахара и цен. Повторный
+запуск контейнера безопасен: существующие Wine/WineOffer обновляются через upsert.
+При `PARSER_ENABLED=true` автозагрузка локального мока пропускается, а endpoint
+`POST /parser/update` становится доступен для ручного обновления.
 
 ### Качество кода
 

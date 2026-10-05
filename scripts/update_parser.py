@@ -9,7 +9,7 @@ def main() -> None:
     if not settings.parser_enabled:
         raise SystemExit("Check source terms, then set PARSER_ENABLED=true")
     source = PerekrestokSource(
-        settings.perekrestok_api_url, settings.parser_timeout, settings.parser_user_agent
+        settings.mock_json_data, settings.parser_timeout, settings.parser_user_agent
     )
     with SessionLocal() as session:
         ParserService(source, Repository(session)).update()

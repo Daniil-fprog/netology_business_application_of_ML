@@ -22,7 +22,7 @@ def update_parser(repository: RepositoryDep) -> ParserUpdateResponse:
             detail="Парсер отключен. Проверьте условия источника и задайте PARSER_ENABLED=true.",
         )
     source = PerekrestokSource(
-        endpoint=settings.perekrestok_api_url,
+        endpoint=settings.mock_json_data,
         timeout=settings.parser_timeout,
         user_agent=settings.parser_user_agent,
     )

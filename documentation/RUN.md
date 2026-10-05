@@ -39,7 +39,8 @@ docker compose up --build
 3. запускает PostgreSQL;
 4. ожидает готовности базы данных;
 5. выполняет `alembic upgrade head`;
-6. запускает FastAPI через Uvicorn на порту `8000`.
+6. при `PARSER_ENABLED=false` загружает локальный JSON-каталог в БД;
+7. запускает FastAPI через Uvicorn на порту `8000`.
 
 После запуска доступны:
 
@@ -114,7 +115,7 @@ cp .env.example .env
 Если API запускается на компьютере, а PostgreSQL — в Docker, в `.env` нужно заменить имя хоста `db` на `localhost`:
 
 ```dotenv
-DATABASE_URL=postgresql+psycopg://wine:wine@localhost:5432/wine
+DATABASE_URL=postgresql+psycopg://wine:wine@localhost:5433/wine
 ```
 
 ### 3. Запустить только PostgreSQL
@@ -123,7 +124,7 @@ DATABASE_URL=postgresql+psycopg://wine:wine@localhost:5432/wine
 docker compose up -d db
 ```
 
-Команда запускает контейнер базы данных без контейнера API. PostgreSQL будет доступен приложению на `localhost:5432`.
+Команда запускает контейнер базы данных без контейнера API. PostgreSQL будет доступен приложению на `localhost:5433`.
 
 ### 4. Применить миграции
 
@@ -161,35 +162,23 @@ Production-подобный запуск без автоматической п�
 poetry run uvicorn wine_recommendation.main:app --host 0.0.0.0 --port 8000 --env-file .env
 ```
 
-## Загрузка каталога вин из мока
+## Автоматическая загрузка каталога из мока
 
 В проект включён локальный JSON-каталог с 16 тестовыми винами. Сетевые запросы и браузер для его загрузки не нужны.
 
 В `.env` нужно задать:
 
 ```dotenv
-PARSER_ENABLED=true
-PEREKRESTOK_API_URL=src/wine_recommendation/data/mock_wines.json
-PARSER_USER_AGENT=WineRecommendationMVP/0.1 (+your-email@example.com)
+PARSER_ENABLED=false
+MOCK_JSON_DATA=src/wine_recommendation/data/mock_wines.json
 ```
 
-При локальном запуске выполнить:
+В Docker-режиме каталог загружается автоматически сразу после миграций и до старта Uvicorn.
+Скрипт автозагрузки принимает только локальный путь или `file://` и не обращается к сети.
+Повторный старт безопасен: записи обновляются через upsert.
 
-```bash
-poetry run dotenv run -- python scripts/update_parser.py
-```
-
-Команда `dotenv run` передаёт скрипту переменные из `.env`. Скрипт читает мок, нормализует записи и выполняет upsert: существующие вина обновляются, новые добавляются, а отсутствующие в полном снимке предложения отмечаются недоступными.
-
-При запуске через Docker вызвать API парсера:
-
-```bash
-docker compose run --rm api python scripts/update_parser.py
-```
-
-Команда запускает разовый контейнер без публикации порта `8000`. Альтернативно при уже работающем API можно вызвать `curl -X POST http://localhost:8000/parser/update`.
-
-Без `PARSER_ENABLED=true` endpoint вернёт HTTP 403. `PEREKRESTOK_API_URL` может содержать путь к локальному JSON-файлу, `file://` URL либо разрешённый HTTP(S)-endpoint.
+При `PARSER_ENABLED=true` автозагрузка мока пропускается. Endpoint `POST /parser/update` доступен
+только в этом режиме; при `false` он возвращает HTTP 403.
 
 ## Проверка рекомендаций из терминала
 

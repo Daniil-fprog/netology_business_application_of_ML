@@ -27,7 +27,7 @@ class PerekrestokSource:
 
     def __init__(self, endpoint: str, timeout: float, user_agent: str) -> None:
         if not endpoint:
-            raise ValueError("PEREKRESTOK_API_URL is not configured")
+            raise ValueError("MOCK_JSON_DATA is not configured")
         self.endpoint = endpoint
         self.timeout = timeout
         self.user_agent = user_agent
