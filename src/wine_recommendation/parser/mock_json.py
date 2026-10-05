@@ -6,9 +6,7 @@ from collections.abc import Mapping
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
-from urllib.error import HTTPError, URLError
 from urllib.parse import unquote, urlsplit
-from urllib.request import Request, urlopen
 
 from wine_recommendation.parser.base import SourceError
 from wine_recommendation.parser.schemas import ParsedWine
@@ -16,27 +14,21 @@ from wine_recommendation.parser.schemas import ParsedWine
 logger = logging.getLogger(__name__)
 
 
-class PerekrestokSource:
-    """Adapter for an approved JSON catalogue endpoint.
+class MockJsonSource:
+    """Load and normalize a wine catalogue from a local JSON file."""
 
-    The endpoint is deliberately configured externally: storefront endpoints and
-    usage terms change. It may return a list or an object with `items`/`products`.
-    """
+    name = "mock_json"
 
-    name = "perekrestok"
-
-    def __init__(self, endpoint: str, timeout: float, user_agent: str) -> None:
-        if not endpoint:
+    def __init__(self, path: str) -> None:
+        if not path:
             raise ValueError("MOCK_JSON_DATA is not configured")
-        self.endpoint = endpoint
-        self.timeout = timeout
-        self.user_agent = user_agent
+        self.path = path
 
     def fetch(self) -> list[ParsedWine]:
         logger.info("Starting source fetch", extra={"source": self.name})
         try:
             payload = self._load_payload()
-        except (HTTPError, URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+        except (OSError, json.JSONDecodeError) as exc:
             logger.exception("Source fetch failed", extra={"source": self.name})
             raise SourceError("Не удалось получить данные источника") from exc
 
@@ -51,21 +43,13 @@ class PerekrestokSource:
         return parsed
 
     def _load_payload(self) -> Any:
-        parsed_url = urlsplit(self.endpoint)
-        if parsed_url.scheme in {"http", "https"}:
-            request = Request(
-                self.endpoint,
-                headers={"User-Agent": self.user_agent, "Accept": "application/json"},
-            )
-            with urlopen(request, timeout=self.timeout) as response:  # noqa: S310
-                return json.load(response)
-
+        parsed_url = urlsplit(self.path)
         if parsed_url.scheme == "file":
             path = Path(unquote(parsed_url.path))
         elif not parsed_url.scheme:
-            path = Path(self.endpoint)
+            path = Path(self.path)
         else:
-            raise SourceError("Источник должен быть HTTP(S)-адресом или локальным JSON-файлом")
+            raise SourceError("Источник должен быть локальным JSON-файлом")
 
         with path.open(encoding="utf-8") as source_file:
             return json.load(source_file)

@@ -12,7 +12,7 @@ from wine_recommendation.core.config import settings
 from wine_recommendation.db.models import User, UserLike, Wine
 from wine_recommendation.db.repositories import Repository
 from wine_recommendation.db.session import SessionLocal
-from wine_recommendation.parser.perekrestok import PerekrestokSource
+from wine_recommendation.parser.mock_json import MockJsonSource
 from wine_recommendation.parser.service import ParserService
 
 DATA_DIR = Path(__file__).parents[1] / "data"
@@ -74,7 +74,10 @@ def load_mock_users_and_likes(session: Session) -> tuple[int, int]:
         missing = ", ".join(sorted(missing_wines))
         raise ValueError(f"Unknown wine_external_id in {likes_path}: {missing}")
 
-    existing_likes = set(session.execute(select(UserLike.user_id, UserLike.wine_id)).tuples())
+    existing_likes = {
+        (user_id, wine_id)
+        for user_id, wine_id in session.execute(select(UserLike.user_id, UserLike.wine_id))
+    }
     likes_created = 0
     for item in like_items:
         user_external_id = _required_string(item, "user_external_id", likes_path)
@@ -101,14 +104,8 @@ def load_mock_catalog() -> None:
     if source_url.scheme not in {"", "file"}:
         raise SystemExit("Automatic catalogue loading requires a local path in MOCK_JSON_DATA")
 
-    source = PerekrestokSource(
-        settings.mock_json_data,
-        settings.parser_timeout,
-        settings.parser_user_agent,
-    )
+    source = MockJsonSource(settings.mock_json_data)
     with SessionLocal() as session:
         updated = ParserService(source, Repository(session)).update()
         users_created, likes_created = load_mock_users_and_likes(session)
-    print(
-        f"Loaded {updated} wines; created {users_created} users and {likes_created} likes"
-    )
+    print(f"Loaded {updated} wines; created {users_created} users and {likes_created} likes")

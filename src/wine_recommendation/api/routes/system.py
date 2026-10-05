@@ -3,7 +3,7 @@ from fastapi import APIRouter, HTTPException, status
 from wine_recommendation.api.dependencies import RepositoryDep
 from wine_recommendation.api.schemas import ParserUpdateResponse
 from wine_recommendation.core.config import settings
-from wine_recommendation.parser.perekrestok import PerekrestokSource
+from wine_recommendation.parser.mock_json import MockJsonSource
 from wine_recommendation.parser.service import ParserService
 
 router = APIRouter()
@@ -21,10 +21,6 @@ def update_parser(repository: RepositoryDep) -> ParserUpdateResponse:
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Парсер отключен. Проверьте условия источника и задайте PARSER_ENABLED=true.",
         )
-    source = PerekrestokSource(
-        endpoint=settings.mock_json_data,
-        timeout=settings.parser_timeout,
-        user_agent=settings.parser_user_agent,
-    )
+    source = MockJsonSource(settings.mock_json_data)
     updated = ParserService(source, repository).update()
     return ParserUpdateResponse(source=source.name, updated=updated)

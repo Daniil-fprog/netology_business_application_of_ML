@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "external_id": "mock-user-001",
+      "username": "Алексей"
+    },
+    {
+      "external_id": "mock-user-002",
+      "username": "Мария"
+    },
+    {
+      "external_id": "mock-user-003",
+      "username": "Дмитрий"
+    },
+    {
+      "external_id": "mock-user-004",
+      "username": "Анна"
+    },
+    {
+      "external_id": "mock-user-005",
+      "username": "Михаил"
+    },
+    {
+      "external_id": "mock-user-006",
+      "username": "Елена"
+    },
+    {
+      "external_id": "mock-user-007",
+      "username": "Сергей"
+    },
+    {
+      "external_id": "mock-user-008",
+      "username": "Ольга"
+    },
+    {
+      "external_id": "mock-user-009",
+      "username": "Андрей"
+    },
+    {
+      "external_id": "mock-user-010",
+      "username": "Наталья"
+    },
+    {
+      "external_id": "mock-user-011",
+      "username": "Иван"
+    },
+    {
+      "external_id": "mock-user-012",
+      "username": "Екатерина"
+    },
+    {
+      "external_id": "mock-user-013",
+      "username": "Никита"
+    },
+    {
+      "external_id": "mock-user-014",
+      "username": "Светлана"
+    },
+    {
+      "external_id": "mock-user-015",
+      "username": "Павел"
+    },
+    {
+      "external_id": "mock-user-016",
+      "username": "Ирина"
+    },
+    {
+      "external_id": "mock-user-017",
+      "username": "Артём"
+    },
+    {
+      "external_id": "mock-user-018",
+      "username": "Татьяна"
+    },
+    {
+      "external_id": "mock-user-019",
+      "username": "Роман"
+    },
+    {
+      "external_id": "mock-user-020",
+      "username": "Вера"
+    }
+  ]
+}

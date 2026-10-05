@@ -35,7 +35,7 @@ User query -> QueryParser -> filter -> weighted ranking -> TOP-N -> API
 - `api` — FastAPI routes и HTTP-схемы.
 - `query_parser` — rule-based parser за интерфейсом `QueryParser`.
 - `recommendation` — фильтрация и ranking.
-- `parser` — сменяемый `WineSource`, адаптер Перекрёстка и pipeline upsert.
+- `parser` — сменяемый `WineSource`, загрузчик JSON-мока и pipeline upsert.
 - `db` — SQLAlchemy-модели и repository; `alembic` — миграции.
 
 Ranking: `0.55 * rating + 0.25 * price_fit + 0.20 * popularity`. Веса задаются в `.env`.
@@ -91,8 +91,9 @@ PARSER_ENABLED=false
 MOCK_JSON_DATA=src/wine_recommendation/data/mock_wines.json
 ```
 
-Встроенный мок содержит 16 вин разных цветов, типов сахара и цен. Повторный
-запуск контейнера безопасен: существующие Wine/WineOffer обновляются через upsert.
+Встроенные моки содержат 100 вин, 20 пользователей и 120 лайков. Повторный
+запуск контейнера безопасен: вина и пользователи обновляются, а лайки не
+дублируются.
 При `PARSER_ENABLED=true` автозагрузка локального мока пропускается, а endpoint
 `POST /parser/update` становится доступен для ручного обновления.
 

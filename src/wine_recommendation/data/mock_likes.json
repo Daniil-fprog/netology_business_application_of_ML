@@ -1,0 +1,484 @@
+{
+  "likes": [
+    {
+      "user_external_id": "mock-user-001",
+      "wine_external_id": "mock-001"
+    },
+    {
+      "user_external_id": "mock-user-001",
+      "wine_external_id": "mock-007"
+    },
+    {
+      "user_external_id": "mock-user-001",
+      "wine_external_id": "mock-009"
+    },
+    {
+      "user_external_id": "mock-user-001",
+      "wine_external_id": "mock-011"
+    },
+    {
+      "user_external_id": "mock-user-001",
+      "wine_external_id": "mock-015"
+    },
+    {
+      "user_external_id": "mock-user-001",
+      "wine_external_id": "mock-017"
+    },
+    {
+      "user_external_id": "mock-user-002",
+      "wine_external_id": "mock-006"
+    },
+    {
+      "user_external_id": "mock-user-002",
+      "wine_external_id": "mock-010"
+    },
+    {
+      "user_external_id": "mock-user-002",
+      "wine_external_id": "mock-018"
+    },
+    {
+      "user_external_id": "mock-user-002",
+      "wine_external_id": "mock-030"
+    },
+    {
+      "user_external_id": "mock-user-002",
+      "wine_external_id": "mock-042"
+    },
+    {
+      "user_external_id": "mock-user-002",
+      "wine_external_id": "mock-054"
+    },
+    {
+      "user_external_id": "mock-user-003",
+      "wine_external_id": "mock-031"
+    },
+    {
+      "user_external_id": "mock-user-003",
+      "wine_external_id": "mock-043"
+    },
+    {
+      "user_external_id": "mock-user-003",
+      "wine_external_id": "mock-055"
+    },
+    {
+      "user_external_id": "mock-user-003",
+      "wine_external_id": "mock-067"
+    },
+    {
+      "user_external_id": "mock-user-003",
+      "wine_external_id": "mock-079"
+    },
+    {
+      "user_external_id": "mock-user-003",
+      "wine_external_id": "mock-091"
+    },
+    {
+      "user_external_id": "mock-user-004",
+      "wine_external_id": "mock-044"
+    },
+    {
+      "user_external_id": "mock-user-004",
+      "wine_external_id": "mock-056"
+    },
+    {
+      "user_external_id": "mock-user-004",
+      "wine_external_id": "mock-068"
+    },
+    {
+      "user_external_id": "mock-user-004",
+      "wine_external_id": "mock-080"
+    },
+    {
+      "user_external_id": "mock-user-004",
+      "wine_external_id": "mock-092"
+    },
+    {
+      "user_external_id": "mock-user-004",
+      "wine_external_id": "mock-013"
+    },
+    {
+      "user_external_id": "mock-user-005",
+      "wine_external_id": "mock-057"
+    },
+    {
+      "user_external_id": "mock-user-005",
+      "wine_external_id": "mock-069"
+    },
+    {
+      "user_external_id": "mock-user-005",
+      "wine_external_id": "mock-081"
+    },
+    {
+      "user_external_id": "mock-user-005",
+      "wine_external_id": "mock-093"
+    },
+    {
+      "user_external_id": "mock-user-005",
+      "wine_external_id": "mock-004"
+    },
+    {
+      "user_external_id": "mock-user-005",
+      "wine_external_id": "mock-021"
+    },
+    {
+      "user_external_id": "mock-user-006",
+      "wine_external_id": "mock-070"
+    },
+    {
+      "user_external_id": "mock-user-006",
+      "wine_external_id": "mock-082"
+    },
+    {
+      "user_external_id": "mock-user-006",
+      "wine_external_id": "mock-094"
+    },
+    {
+      "user_external_id": "mock-user-006",
+      "wine_external_id": "mock-012"
+    },
+    {
+      "user_external_id": "mock-user-006",
+      "wine_external_id": "mock-022"
+    },
+    {
+      "user_external_id": "mock-user-006",
+      "wine_external_id": "mock-034"
+    },
+    {
+      "user_external_id": "mock-user-007",
+      "wine_external_id": "mock-083"
+    },
+    {
+      "user_external_id": "mock-user-007",
+      "wine_external_id": "mock-095"
+    },
+    {
+      "user_external_id": "mock-user-007",
+      "wine_external_id": "mock-003"
+    },
+    {
+      "user_external_id": "mock-user-007",
+      "wine_external_id": "mock-023"
+    },
+    {
+      "user_external_id": "mock-user-007",
+      "wine_external_id": "mock-035"
+    },
+    {
+      "user_external_id": "mock-user-007",
+      "wine_external_id": "mock-047"
+    },
+    {
+      "user_external_id": "mock-user-008",
+      "wine_external_id": "mock-084"
+    },
+    {
+      "user_external_id": "mock-user-008",
+      "wine_external_id": "mock-096"
+    },
+    {
+      "user_external_id": "mock-user-008",
+      "wine_external_id": "mock-008"
+    },
+    {
+      "user_external_id": "mock-user-008",
+      "wine_external_id": "mock-014"
+    },
+    {
+      "user_external_id": "mock-user-008",
+      "wine_external_id": "mock-024"
+    },
+    {
+      "user_external_id": "mock-user-008",
+      "wine_external_id": "mock-036"
+    },
+    {
+      "user_external_id": "mock-user-009",
+      "wine_external_id": "mock-016"
+    },
+    {
+      "user_external_id": "mock-user-009",
+      "wine_external_id": "mock-025"
+    },
+    {
+      "user_external_id": "mock-user-009",
+      "wine_external_id": "mock-037"
+    },
+    {
+      "user_external_id": "mock-user-009",
+      "wine_external_id": "mock-049"
+    },
+    {
+      "user_external_id": "mock-user-009",
+      "wine_external_id": "mock-061"
+    },
+    {
+      "user_external_id": "mock-user-009",
+      "wine_external_id": "mock-073"
+    },
+    {
+      "user_external_id": "mock-user-010",
+      "wine_external_id": "mock-050"
+    },
+    {
+      "user_external_id": "mock-user-010",
+      "wine_external_id": "mock-062"
+    },
+    {
+      "user_external_id": "mock-user-010",
+      "wine_external_id": "mock-074"
+    },
+    {
+      "user_external_id": "mock-user-010",
+      "wine_external_id": "mock-086"
+    },
+    {
+      "user_external_id": "mock-user-010",
+      "wine_external_id": "mock-098"
+    },
+    {
+      "user_external_id": "mock-user-010",
+      "wine_external_id": "mock-026"
+    },
+    {
+      "user_external_id": "mock-user-011",
+      "wine_external_id": "mock-063"
+    },
+    {
+      "user_external_id": "mock-user-011",
+      "wine_external_id": "mock-075"
+    },
+    {
+      "user_external_id": "mock-user-011",
+      "wine_external_id": "mock-087"
+    },
+    {
+      "user_external_id": "mock-user-011",
+      "wine_external_id": "mock-099"
+    },
+    {
+      "user_external_id": "mock-user-011",
+      "wine_external_id": "mock-027"
+    },
+    {
+      "user_external_id": "mock-user-011",
+      "wine_external_id": "mock-039"
+    },
+    {
+      "user_external_id": "mock-user-012",
+      "wine_external_id": "mock-076"
+    },
+    {
+      "user_external_id": "mock-user-012",
+      "wine_external_id": "mock-088"
+    },
+    {
+      "user_external_id": "mock-user-012",
+      "wine_external_id": "mock-100"
+    },
+    {
+      "user_external_id": "mock-user-012",
+      "wine_external_id": "mock-028"
+    },
+    {
+      "user_external_id": "mock-user-012",
+      "wine_external_id": "mock-040"
+    },
+    {
+      "user_external_id": "mock-user-012",
+      "wine_external_id": "mock-052"
+    },
+    {
+      "user_external_id": "mock-user-013",
+      "wine_external_id": "mock-001"
+    },
+    {
+      "user_external_id": "mock-user-013",
+      "wine_external_id": "mock-007"
+    },
+    {
+      "user_external_id": "mock-user-013",
+      "wine_external_id": "mock-009"
+    },
+    {
+      "user_external_id": "mock-user-013",
+      "wine_external_id": "mock-011"
+    },
+    {
+      "user_external_id": "mock-user-013",
+      "wine_external_id": "mock-015"
+    },
+    {
+      "user_external_id": "mock-user-013",
+      "wine_external_id": "mock-017"
+    },
+    {
+      "user_external_id": "mock-user-014",
+      "wine_external_id": "mock-018"
+    },
+    {
+      "user_external_id": "mock-user-014",
+      "wine_external_id": "mock-030"
+    },
+    {
+      "user_external_id": "mock-user-014",
+      "wine_external_id": "mock-042"
+    },
+    {
+      "user_external_id": "mock-user-014",
+      "wine_external_id": "mock-054"
+    },
+    {
+      "user_external_id": "mock-user-014",
+      "wine_external_id": "mock-066"
+    },
+    {
+      "user_external_id": "mock-user-014",
+      "wine_external_id": "mock-078"
+    },
+    {
+      "user_external_id": "mock-user-015",
+      "wine_external_id": "mock-079"
+    },
+    {
+      "user_external_id": "mock-user-015",
+      "wine_external_id": "mock-091"
+    },
+    {
+      "user_external_id": "mock-user-015",
+      "wine_external_id": "mock-005"
+    },
+    {
+      "user_external_id": "mock-user-015",
+      "wine_external_id": "mock-019"
+    },
+    {
+      "user_external_id": "mock-user-015",
+      "wine_external_id": "mock-031"
+    },
+    {
+      "user_external_id": "mock-user-015",
+      "wine_external_id": "mock-043"
+    },
+    {
+      "user_external_id": "mock-user-016",
+      "wine_external_id": "mock-092"
+    },
+    {
+      "user_external_id": "mock-user-016",
+      "wine_external_id": "mock-013"
+    },
+    {
+      "user_external_id": "mock-user-016",
+      "wine_external_id": "mock-020"
+    },
+    {
+      "user_external_id": "mock-user-016",
+      "wine_external_id": "mock-032"
+    },
+    {
+      "user_external_id": "mock-user-016",
+      "wine_external_id": "mock-044"
+    },
+    {
+      "user_external_id": "mock-user-016",
+      "wine_external_id": "mock-056"
+    },
+    {
+      "user_external_id": "mock-user-017",
+      "wine_external_id": "mock-004"
+    },
+    {
+      "user_external_id": "mock-user-017",
+      "wine_external_id": "mock-021"
+    },
+    {
+      "user_external_id": "mock-user-017",
+      "wine_external_id": "mock-033"
+    },
+    {
+      "user_external_id": "mock-user-017",
+      "wine_external_id": "mock-045"
+    },
+    {
+      "user_external_id": "mock-user-017",
+      "wine_external_id": "mock-057"
+    },
+    {
+      "user_external_id": "mock-user-017",
+      "wine_external_id": "mock-069"
+    },
+    {
+      "user_external_id": "mock-user-018",
+      "wine_external_id": "mock-022"
+    },
+    {
+      "user_external_id": "mock-user-018",
+      "wine_external_id": "mock-034"
+    },
+    {
+      "user_external_id": "mock-user-018",
+      "wine_external_id": "mock-046"
+    },
+    {
+      "user_external_id": "mock-user-018",
+      "wine_external_id": "mock-058"
+    },
+    {
+      "user_external_id": "mock-user-018",
+      "wine_external_id": "mock-070"
+    },
+    {
+      "user_external_id": "mock-user-018",
+      "wine_external_id": "mock-082"
+    },
+    {
+      "user_external_id": "mock-user-019",
+      "wine_external_id": "mock-035"
+    },
+    {
+      "user_external_id": "mock-user-019",
+      "wine_external_id": "mock-047"
+    },
+    {
+      "user_external_id": "mock-user-019",
+      "wine_external_id": "mock-059"
+    },
+    {
+      "user_external_id": "mock-user-019",
+      "wine_external_id": "mock-071"
+    },
+    {
+      "user_external_id": "mock-user-019",
+      "wine_external_id": "mock-083"
+    },
+    {
+      "user_external_id": "mock-user-019",
+      "wine_external_id": "mock-095"
+    },
+    {
+      "user_external_id": "mock-user-020",
+      "wine_external_id": "mock-014"
+    },
+    {
+      "user_external_id": "mock-user-020",
+      "wine_external_id": "mock-024"
+    },
+    {
+      "user_external_id": "mock-user-020",
+      "wine_external_id": "mock-036"
+    },
+    {
+      "user_external_id": "mock-user-020",
+      "wine_external_id": "mock-048"
+    },
+    {
+      "user_external_id": "mock-user-020",
+      "wine_external_id": "mock-060"
+    },
+    {
+      "user_external_id": "mock-user-020",
+      "wine_external_id": "mock-072"
+    }
+  ]
+}

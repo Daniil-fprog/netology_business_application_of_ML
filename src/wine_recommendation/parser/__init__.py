@@ -1,4 +1,4 @@
 from wine_recommendation.parser.base import WineSource
-from wine_recommendation.parser.perekrestok import PerekrestokSource
+from wine_recommendation.parser.mock_json import MockJsonSource
 
-__all__ = ["PerekrestokSource", "WineSource"]
+__all__ = ["MockJsonSource", "WineSource"]

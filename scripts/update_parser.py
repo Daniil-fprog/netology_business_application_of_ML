@@ -1,16 +1,14 @@
 from wine_recommendation.core.config import settings
 from wine_recommendation.db.repositories import Repository
 from wine_recommendation.db.session import SessionLocal
-from wine_recommendation.parser.perekrestok import PerekrestokSource
+from wine_recommendation.parser.mock_json import MockJsonSource
 from wine_recommendation.parser.service import ParserService
 
 
 def main() -> None:
     if not settings.parser_enabled:
         raise SystemExit("Check source terms, then set PARSER_ENABLED=true")
-    source = PerekrestokSource(
-        settings.mock_json_data, settings.parser_timeout, settings.parser_user_agent
-    )
+    source = MockJsonSource(settings.mock_json_data)
     with SessionLocal() as session:
         ParserService(source, Repository(session)).update()
 

@@ -66,7 +66,7 @@
 
 Например:
 
-`WineSource -> PerekrestokSource`
+`WineSource -> MockJsonSource`
 
 В дальнейшем:
 
@@ -367,7 +367,7 @@ wine-recommendation/
 │       │
 │       ├── parser/
 │       │   ├── base.py
-│       │   └── perekrestok.py
+│       │   └── mock_json.py
 │       │
 │       ├── query_parser/
 │       │   ├── parser.py
