@@ -25,7 +25,44 @@ def test_frontend_is_available() -> None:
         script = client.get("/static/app.js")
     assert page.status_code == 200
     assert "recommendation-form" in page.text
+    assert "profile-switcher" in page.text
     assert script.status_code == 200
+
+
+def test_list_users() -> None:
+    engine = create_engine(
+        "sqlite+pysqlite:///:memory:",
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool,
+    )
+    Base.metadata.create_all(engine)
+    with Session(engine) as session:
+        repository = Repository(session)
+        first_user = repository.create_user("first-user", "Алексей")
+        second_user = repository.create_user("second-user", "Мария")
+        app.dependency_overrides[get_repository] = lambda: repository
+        try:
+            with TestClient(app) as client:
+                response = client.get("/users")
+        finally:
+            app.dependency_overrides.clear()
+        expected = [
+            {
+                "id": first_user.id,
+                "external_id": "first-user",
+                "username": "Алексей",
+                "created_at": first_user.created_at.isoformat(),
+            },
+            {
+                "id": second_user.id,
+                "external_id": "second-user",
+                "username": "Мария",
+                "created_at": second_user.created_at.isoformat(),
+            },
+        ]
+
+    assert response.status_code == 200
+    assert response.json() == expected
 
 
 def test_invalid_recommendation_request() -> None:

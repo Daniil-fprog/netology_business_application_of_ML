@@ -4,6 +4,16 @@ const resultCount = document.querySelector("#result-count");
 const formError = document.querySelector("#form-error");
 const resultsPanel = document.querySelector(".results-panel");
 const submitButton = form.querySelector("button[type='submit']");
+const profileAvatar = document.querySelector("#profile-avatar");
+const profileName = document.querySelector("#profile-name");
+const profileStatus = document.querySelector("#profile-status");
+const previousProfileButton = document.querySelector("#previous-profile");
+const nextProfileButton = document.querySelector("#next-profile");
+
+let profiles = [];
+let activeProfileIndex = 0;
+let lastSearch = null;
+let requestSequence = 0;
 
 const labels = {
   red: "Красное",
@@ -90,7 +100,90 @@ function showEmpty(message) {
     </div>`;
 }
 
-form.addEventListener("submit", async (event) => {
+function activeProfile() {
+  return profiles[activeProfileIndex] || null;
+}
+
+function updateProfileDisplay() {
+  const profile = activeProfile();
+  if (!profile) {
+    profileAvatar.textContent = "—";
+    profileName.textContent = "Без профиля";
+    profileStatus.textContent = "Общая подборка";
+    return;
+  }
+
+  const name = profile.username || `Профиль ${profile.id}`;
+  profileAvatar.textContent = name.trim().charAt(0).toLocaleUpperCase("ru-RU");
+  profileName.textContent = name;
+  profileStatus.textContent = `Профиль ${activeProfileIndex + 1} из ${profiles.length}`;
+}
+
+async function loadProfiles() {
+  try {
+    const response = await fetch("/users?limit=100");
+    if (!response.ok) throw new Error("Не удалось загрузить профили");
+    profiles = await response.json();
+  } catch {
+    profiles = [];
+  }
+
+  updateProfileDisplay();
+  const canSwitch = profiles.length > 1;
+  previousProfileButton.disabled = !canSwitch;
+  nextProfileButton.disabled = !canSwitch;
+  if (profiles.length && lastSearch) requestRecommendations(lastSearch);
+}
+
+function switchProfile(direction) {
+  if (profiles.length < 2) return;
+  activeProfileIndex = (activeProfileIndex + direction + profiles.length) % profiles.length;
+  updateProfileDisplay();
+  if (lastSearch) requestRecommendations(lastSearch);
+}
+
+async function requestRecommendations(search) {
+  const currentRequest = ++requestSequence;
+  const profile = activeProfile();
+  submitButton.disabled = true;
+  submitButton.firstElementChild.textContent = "Подбираем…";
+  resultsPanel.setAttribute("aria-busy", "true");
+  results.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div>';
+
+  try {
+    const response = await fetch("/recommendations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...search,
+        user_id: profile?.id,
+      }),
+    });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.detail || "Не удалось получить рекомендации");
+    if (currentRequest !== requestSequence) return;
+
+    const recommendations = payload.recommendations;
+    resultCount.textContent = `${recommendations.length} ${recommendations.length === 1 ? "вариант" : "вариантов"}`;
+    if (recommendations.length === 0) {
+      showEmpty("Попробуйте расширить диапазон цены или изменить выбранные параметры.");
+    } else {
+      results.innerHTML = recommendations.map(cardTemplate).join("");
+    }
+  } catch (error) {
+    if (currentRequest !== requestSequence) return;
+    resultCount.textContent = "0 вариантов";
+    showEmpty(error.message || "Сервис временно недоступен. Попробуйте ещё раз.");
+  } finally {
+    if (currentRequest === requestSequence) {
+      submitButton.disabled = false;
+      submitButton.firstElementChild.textContent = "Подобрать вино";
+      resultsPanel.setAttribute("aria-busy", "false");
+    }
+  }
+}
+
+form.addEventListener("submit", (event) => {
   event.preventDefault();
   formError.hidden = true;
   const data = new FormData(form);
@@ -102,36 +195,14 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
-  submitButton.disabled = true;
-  submitButton.firstElementChild.textContent = "Подбираем…";
-  resultsPanel.setAttribute("aria-busy", "true");
-  results.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div>';
-
-  try {
-    const response = await fetch("/recommendations", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query: buildQuery(data),
-        limit: Number(data.get("limit")),
-      }),
-    });
-    const payload = await response.json();
-    if (!response.ok) throw new Error(payload.detail || "Не удалось получить рекомендации");
-
-    const recommendations = payload.recommendations;
-    resultCount.textContent = `${recommendations.length} ${recommendations.length === 1 ? "вариант" : "вариантов"}`;
-    if (recommendations.length === 0) {
-      showEmpty("Попробуйте расширить диапазон цены или изменить выбранные параметры.");
-    } else {
-      results.innerHTML = recommendations.map(cardTemplate).join("");
-    }
-  } catch (error) {
-    resultCount.textContent = "0 вариантов";
-    showEmpty(error.message || "Сервис временно недоступен. Попробуйте ещё раз.");
-  } finally {
-    submitButton.disabled = false;
-    submitButton.firstElementChild.textContent = "Подобрать вино";
-    resultsPanel.setAttribute("aria-busy", "false");
-  }
+  lastSearch = {
+    query: buildQuery(data),
+    limit: Number(data.get("limit")),
+  };
+  requestRecommendations(lastSearch);
 });
+
+previousProfileButton.addEventListener("click", () => switchProfile(-1));
+nextProfileButton.addEventListener("click", () => switchProfile(1));
+
+loadProfiles();

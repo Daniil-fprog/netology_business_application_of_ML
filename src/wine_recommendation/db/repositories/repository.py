@@ -40,6 +40,11 @@ class Repository:
             raise NotFoundError("Пользователь не найден")
         return user
 
+    def list_users(self, offset: int = 0, limit: int = 100) -> list[User]:
+        return list(
+            self.session.scalars(select(User).order_by(User.id).offset(offset).limit(limit))
+        )
+
     def get_wine(self, wine_id: int) -> Wine:
         wine = self.session.scalar(
             select(Wine).options(selectinload(Wine.offers)).where(Wine.id == wine_id)

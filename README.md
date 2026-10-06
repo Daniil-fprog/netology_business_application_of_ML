@@ -72,7 +72,7 @@ poetry run uvicorn wine_recommendation.main:app --reload
 
 - `GET /health`
 - `GET /wines`, `GET /wines/{id}`
-- `POST /users`
+- `GET /users`, `POST /users`
 - `POST /users/{id}/likes`, `DELETE /users/{id}/likes/{wine_id}`
 - `POST /recommendations`
 - `POST /parser/update`

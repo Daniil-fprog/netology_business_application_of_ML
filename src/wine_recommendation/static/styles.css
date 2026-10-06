@@ -37,12 +37,20 @@ select {
 .filter-panel {
   position: relative;
   z-index: 1;
-  padding: clamp(32px, 5vh, 64px) clamp(28px, 4vw, 56px);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100vh;
+  overflow: hidden;
   background:
     radial-gradient(circle at 15% 85%, rgb(180 139 73 / 12%), transparent 27%),
     var(--paper);
   border-right: 1px solid var(--line);
   box-shadow: 18px 0 50px rgb(68 16 33 / 5%);
+}
+
+.filter-content {
+  padding: clamp(32px, 5vh, 64px) clamp(28px, 4vw, 56px) 28px;
+  overflow-y: auto;
 }
 
 .brand {
@@ -224,6 +232,102 @@ legend,
   color: #9a9090;
   font-size: 10px;
   line-height: 1.5;
+}
+
+.profile-switcher {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 18px clamp(28px, 4vw, 56px);
+  align-items: center;
+  border-top: 1px solid var(--line);
+  background: rgb(255 253 249 / 96%);
+  box-shadow: 0 -12px 30px rgb(68 16 33 / 5%);
+}
+
+.profile-avatar {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: #efe4e3;
+  color: var(--wine);
+  font-family: "Prata", serif;
+  font-size: 17px;
+}
+
+.profile-details {
+  min-width: 0;
+}
+
+.profile-label,
+.profile-name,
+.profile-status {
+  display: block;
+}
+
+.profile-label {
+  margin-bottom: 2px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.profile-name {
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile-status {
+  margin-top: 2px;
+  color: var(--gold);
+  font-size: 9px;
+}
+
+.profile-controls {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+
+.profile-controls button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  background: white;
+  color: var(--wine);
+  cursor: pointer;
+  transition: 160ms ease;
+}
+
+.profile-controls button + button {
+  border-left: 1px solid var(--line);
+}
+
+.profile-controls button:hover:not(:disabled) {
+  background: var(--wine);
+  color: white;
+}
+
+.profile-controls button:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 3px solid rgb(180 139 73 / 35%);
+  outline-offset: -3px;
+}
+
+.profile-controls button:disabled {
+  color: #bcb2b2;
+  cursor: wait;
 }
 
 .results-panel {
@@ -429,8 +533,15 @@ legend,
   }
 
   .filter-panel {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
     border-right: 0;
     border-bottom: 1px solid var(--line);
+  }
+
+  .filter-content {
+    overflow: visible;
   }
 
   .results-panel {
@@ -456,4 +567,3 @@ legend,
     margin: 0;
   }
 }
-

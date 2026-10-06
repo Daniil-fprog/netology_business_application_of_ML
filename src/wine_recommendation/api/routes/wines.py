@@ -25,6 +25,15 @@ def create_user(payload: UserCreate, repository: RepositoryDep) -> UserRead:
     return UserRead.model_validate(repository.create_user(payload.external_id, payload.username))
 
 
+@router.get("/users", response_model=list[UserRead])
+def list_users(
+    repository: RepositoryDep,
+    offset: int = Query(default=0, ge=0),
+    limit: int = Query(default=100, ge=1, le=500),
+) -> list[UserRead]:
+    return [UserRead.model_validate(user) for user in repository.list_users(offset, limit)]
+
+
 @router.post("/users/{user_id}/likes", response_model=LikeRead, status_code=status.HTTP_201_CREATED)
 def add_like(user_id: int, payload: LikeCreate, repository: RepositoryDep) -> LikeRead:
     return LikeRead.model_validate(repository.add_like(user_id, payload.wine_id))

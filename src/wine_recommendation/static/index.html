@@ -16,17 +16,18 @@
   <body>
     <main class="app-shell">
       <aside class="filter-panel">
-        <div class="brand">
-          <span class="brand-mark" aria-hidden="true">V</span>
-          <div>
-            <p class="eyebrow">Wine recommendation</p>
-            <h1>Винный выбор</h1>
+        <div class="filter-content">
+          <div class="brand">
+            <span class="brand-mark" aria-hidden="true">V</span>
+            <div>
+              <p class="eyebrow">Wine recommendation</p>
+              <h1>Винный выбор</h1>
+            </div>
           </div>
-        </div>
 
-        <p class="intro">Соберите свой запрос — мы найдём лучшие совпадения в каталоге.</p>
+          <p class="intro">Соберите свой запрос — мы найдём лучшие совпадения в каталоге.</p>
 
-        <form id="recommendation-form">
+          <form id="recommendation-form">
           <fieldset>
             <legend>Цвет вина</legend>
             <div class="segmented-control">
@@ -83,9 +84,23 @@
             <span>Подобрать вино</span>
             <span aria-hidden="true">→</span>
           </button>
-        </form>
+          </form>
 
-        <p class="footnote">Рекомендации основаны на рейтинге, цене и популярности.</p>
+          <p class="footnote">Рекомендации основаны на рейтинге, цене и личных предпочтениях.</p>
+        </div>
+
+        <section class="profile-switcher" aria-labelledby="profile-title">
+          <div id="profile-avatar" class="profile-avatar" aria-hidden="true">…</div>
+          <div class="profile-details">
+            <p id="profile-title" class="profile-label">Профиль рекомендаций</p>
+            <strong id="profile-name" class="profile-name">Загрузка…</strong>
+            <span id="profile-status" class="profile-status">Подбираем профили</span>
+          </div>
+          <div class="profile-controls" aria-label="Переключить профиль">
+            <button id="previous-profile" type="button" aria-label="Предыдущий профиль" disabled>←</button>
+            <button id="next-profile" type="button" aria-label="Следующий профиль" disabled>→</button>
+          </div>
+        </section>
       </aside>
 
       <section class="results-panel" aria-live="polite" aria-busy="false">
