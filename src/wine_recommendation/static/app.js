@@ -25,19 +25,14 @@ const labels = {
   sweet: "Сладкое",
 };
 
-function buildQuery(data) {
-  const parts = [];
-  if (data.get("color")) parts.push(data.get("color"));
-  if (data.get("sugarType")) parts.push(data.get("sugarType"));
-
-  const minPrice = data.get("minPrice");
-  const maxPrice = data.get("maxPrice");
-  if (minPrice && maxPrice) parts.push(`от ${minPrice} до ${maxPrice}`);
-  else if (minPrice) parts.push(`от ${minPrice}`);
-  else if (maxPrice) parts.push(`до ${maxPrice}`);
-
-  if (data.get("rating")) parts.push(`рейтинг от ${data.get("rating")}`);
-  return parts.join(" ") || "покажи вино";
+function buildFilters(data) {
+  const filters = {};
+  if (data.get("color")) filters.color = data.get("color");
+  if (data.get("sugarType")) filters.sugar_type = data.get("sugarType");
+  if (data.get("minPrice")) filters.min_price = Number(data.get("minPrice"));
+  if (data.get("maxPrice")) filters.max_price = Number(data.get("maxPrice"));
+  if (data.get("rating")) filters.min_rating = Number(data.get("rating"));
+  return filters;
 }
 
 function escapeHtml(value) {
@@ -196,7 +191,7 @@ form.addEventListener("submit", (event) => {
   }
 
   lastSearch = {
-    query: buildQuery(data),
+    ...buildFilters(data),
     limit: Number(data.get("limit")),
   };
   requestRecommendations(lastSearch);

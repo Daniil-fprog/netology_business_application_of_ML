@@ -1,5 +1,5 @@
 from wine_recommendation.ml.recommender import ContentBasedRecommender
-from wine_recommendation.query_parser.schemas import WineQuery
+from wine_recommendation.recommendation.filters import WineFilters
 from wine_recommendation.recommendation.schemas import WineCandidate
 from wine_recommendation.recommendation.service import RecommendationService
 
@@ -56,7 +56,7 @@ def test_personalized_ranking_excludes_liked_wines() -> None:
 
     results = RecommendationService().recommend(
         wines,
-        WineQuery(),
+        WineFilters(),
         personalized_scores=scores,
         excluded_wine_ids={1},
     )

@@ -16,8 +16,8 @@ class SugarType(StrEnum):
     SWEET = "sweet"
 
 
-class WineQuery(BaseModel):
-    model_config = ConfigDict(use_enum_values=True)
+class WineFilters(BaseModel):
+    model_config = ConfigDict(use_enum_values=True, extra="forbid")
 
     color: Color | None = None
     sugar_type: SugarType | None = None
@@ -26,7 +26,7 @@ class WineQuery(BaseModel):
     min_rating: float | None = Field(default=None, ge=0, le=5)
 
     @model_validator(mode="after")
-    def valid_range(self) -> "WineQuery":
+    def valid_range(self) -> "WineFilters":
         if (
             self.min_price is not None
             and self.max_price is not None

@@ -23,19 +23,18 @@
 
 ## Wine Recommendation Service
 
-MVP-сервис подбора вина. Он разбирает запрос на русском языке, фильтрует каталог и возвращает TOP-N. Content-based ML-модель обучает профиль пользователя на его лайках и поднимает похожие вина. Без лайков используется стандартный ranking.
+MVP-сервис подбора вина. Он принимает структурированные параметры формы, жёстко фильтрует каталог и возвращает TOP-N. Content-based ML-модель обучает профиль пользователя на его лайках и поднимает похожие вина. Без лайков используется стандартный ranking.
 
 ### Архитектура
 
 ```text
 JSON source -> WineSource -> normalize -> Repository -> PostgreSQL
-User query -> QueryParser -> filter -> weighted ranking -> TOP-N -> API
+Form filters -> SQL WHERE -> weighted ranking -> TOP-N -> API
 User likes -> ML user profile -> cosine similarity -----^
 ```
 
 - `api` — FastAPI routes и HTTP-схемы.
-- `query_parser` — rule-based parser за интерфейсом `QueryParser`.
-- `recommendation` — фильтрация и ranking.
+- `recommendation` — схемы фильтров, жёсткая фильтрация и ranking.
 - `ml` — обучение content-based модели и ML-scoring.
 - `parser` — сменяемый `WineSource`, загрузчик JSON-мока и pipeline upsert.
 - `db` — SQLAlchemy-модели и repository; `alembic` — миграции.
@@ -81,7 +80,7 @@ poetry run uvicorn wine_recommendation.main:app --reload
 ```bash
 curl -X POST http://localhost:8000/recommendations \
   -H 'Content-Type: application/json' \
-  -d '{"query":"красное сухое до 1500","limit":5}'
+  -d '{"color":"red","sugar_type":"dry","max_price":1500,"limit":5}'
 ```
 
 Для переобучения модели на текущем каталоге и лайках:

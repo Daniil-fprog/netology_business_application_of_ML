@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session, selectinload
 
 from wine_recommendation.db.models import RecommendationEvent, User, UserLike, Wine, WineOffer
 from wine_recommendation.parser.schemas import ParsedWine
+from wine_recommendation.recommendation.filters import WineFilters
 from wine_recommendation.recommendation.schemas import WineCandidate
 
 
@@ -85,10 +86,20 @@ class Repository:
             raise NotFoundError("Лайк не найден")
         self.session.commit()
 
-    def candidates(self) -> list[WineCandidate]:
-        rows = self.session.execute(
-            select(Wine, WineOffer).join(WineOffer).where(WineOffer.is_available.is_(True))
-        ).all()
+    def candidates(self, filters: WineFilters | None = None) -> list[WineCandidate]:
+        statement = select(Wine, WineOffer).join(WineOffer).where(WineOffer.is_available.is_(True))
+        if filters is not None:
+            if filters.color is not None:
+                statement = statement.where(Wine.color == filters.color)
+            if filters.sugar_type is not None:
+                statement = statement.where(Wine.sugar_type == filters.sugar_type)
+            if filters.min_price is not None:
+                statement = statement.where(WineOffer.price >= filters.min_price)
+            if filters.max_price is not None:
+                statement = statement.where(WineOffer.price <= filters.max_price)
+            if filters.min_rating is not None:
+                statement = statement.where(WineOffer.external_rating >= filters.min_rating)
+        rows = self.session.execute(statement).all()
         return [
             WineCandidate(
                 wine_id=wine.id,
@@ -128,13 +139,12 @@ class Repository:
         return result
 
     def save_event(
-        self, user_id: int | None, raw_query: str, parsed: dict[str, object], wine_ids: list[int]
+        self, user_id: int | None, filters: dict[str, object], wine_ids: list[int]
     ) -> None:
         self.session.add(
             RecommendationEvent(
                 user_id=user_id,
-                raw_query=raw_query,
-                parsed_params=parsed,
+                filters=filters,
                 recommended_wine_ids=wine_ids,
             )
         )

@@ -3,7 +3,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
-from wine_recommendation.query_parser.schemas import WineQuery
+from wine_recommendation.recommendation.filters import WineFilters
 from wine_recommendation.recommendation.schemas import WineCandidate
 
 
@@ -21,14 +21,14 @@ class RankingWeights:
 
 def calculate_score(
     wine: WineCandidate,
-    query: WineQuery,
+    filters: WineFilters,
     weights: RankingWeights,
     max_reviews: int,
     preferred_pair: tuple[str, str] | None = None,
 ) -> float:
     rating_score = min(max((wine.rating or 0) / 5, 0), 1)
     popularity_score = math.log1p(wine.reviews_count) / math.log1p(max(max_reviews, 1))
-    price_score = _price_score(wine.price, query)
+    price_score = _price_score(wine.price, filters)
     preference = (
         weights.preference_boost if preferred_pair == (wine.color, wine.sugar_type) else 0.0
     )
@@ -41,13 +41,13 @@ def calculate_score(
     )
 
 
-def _price_score(price: float, query: WineQuery) -> float:
-    if query.min_price is not None and query.max_price is not None:
-        center = (query.min_price + query.max_price) / 2
-        half_range = max((query.max_price - query.min_price) / 2, 1)
+def _price_score(price: float, filters: WineFilters) -> float:
+    if filters.min_price is not None and filters.max_price is not None:
+        center = (filters.min_price + filters.max_price) / 2
+        half_range = max((filters.max_price - filters.min_price) / 2, 1)
         return max(0.0, 1 - abs(price - center) / half_range)
-    if query.max_price is not None:
-        return max(0.0, 1 - price / max(query.max_price, 1))
-    if query.min_price is not None:
-        return min(1.0, query.min_price / max(price, 1))
+    if filters.max_price is not None:
+        return max(0.0, 1 - price / max(filters.max_price, 1))
+    if filters.min_price is not None:
+        return min(1.0, filters.min_price / max(price, 1))
     return 1.0

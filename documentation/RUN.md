@@ -185,10 +185,10 @@ MOCK_JSON_DATA=src/wine_recommendation/data/mock_wines.json
 ```bash
 curl -X POST http://localhost:8000/recommendations \
   -H 'Content-Type: application/json' \
-  -d '{"query":"красное сухое до 1500","limit":5}'
+  -d '{"color":"red","sugar_type":"dry","max_price":1500,"limit":5}'
 ```
 
-API разбирает строку запроса, фильтрует доступные предложения, рассчитывает score и возвращает до пяти карточек. Если каталог ещё не загружен, массив `recommendations` будет пустым.
+API валидирует структурированные параметры, фильтрует доступные предложения в SQL, рассчитывает score и возвращает до пяти карточек. Если каталог ещё не загружен, массив `recommendations` будет пустым.
 
 В Docker ML-модель автоматически обучается после загрузки моков и при старте FastAPI. Переобучить её после изменения лайков можно без перезапуска:
 

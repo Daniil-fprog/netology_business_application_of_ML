@@ -67,7 +67,13 @@ def test_list_users() -> None:
 
 def test_invalid_recommendation_request() -> None:
     with TestClient(app) as client:
-        response = client.post("/recommendations", json={"query": ""})
+        response = client.post("/recommendations", json={"min_price": 2000, "max_price": 1000})
+    assert response.status_code == 422
+
+
+def test_legacy_text_query_is_rejected() -> None:
+    with TestClient(app) as client:
+        response = client.post("/recommendations", json={"query": "красное сухое до 1500"})
     assert response.status_code == 422
 
 
@@ -99,14 +105,19 @@ def test_recommendation_flow() -> None:
             with TestClient(app) as client:
                 response = client.post(
                     "/recommendations",
-                    json={"query": "красное сухое до 1500", "limit": 5},
+                    json={
+                        "color": "red",
+                        "sugar_type": "dry",
+                        "max_price": 1500,
+                        "limit": 5,
+                    },
                 )
         finally:
             app.dependency_overrides.clear()
 
     assert response.status_code == 200
     body = response.json()
-    assert body["parsed_query"]["color"] == "red"
+    assert body["applied_filters"]["color"] == "red"
     assert body["recommendations"][0]["name"] == "Test Red"
     assert body["recommendation_mode"] == "standard"
 
@@ -168,11 +179,11 @@ def test_ml_retrain_and_personalized_recommendations() -> None:
                 training_response = client.post("/ml/retrain")
                 personalized_response = client.post(
                     "/recommendations",
-                    json={"user_id": user.id, "query": "вино до 2000", "limit": 3},
+                    json={"user_id": user.id, "max_price": 2000, "limit": 3},
                 )
                 fallback_response = client.post(
                     "/recommendations",
-                    json={"user_id": user_without_likes.id, "query": "вино до 2000"},
+                    json={"user_id": user_without_likes.id, "max_price": 2000},
                 )
         finally:
             app.dependency_overrides.clear()

@@ -4,7 +4,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from wine_recommendation.query_parser.schemas import WineQuery
+from wine_recommendation.recommendation.filters import WineFilters
 
 
 class UserCreate(BaseModel):
@@ -62,9 +62,8 @@ class WineRead(BaseModel):
     offers: list[OfferRead]
 
 
-class RecommendationRequest(BaseModel):
+class RecommendationRequest(WineFilters):
     user_id: int | None = Field(default=None, gt=0)
-    query: str = Field(min_length=1, max_length=1000)
     limit: int = Field(default=5, ge=1, le=50)
 
 
@@ -86,7 +85,7 @@ class RecommendationRead(BaseModel):
 
 
 class RecommendationResponse(BaseModel):
-    parsed_query: WineQuery
+    applied_filters: WineFilters
     recommendation_mode: Literal["standard", "ml"]
     recommendations: list[RecommendationRead]
 

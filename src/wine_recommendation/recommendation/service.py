@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from wine_recommendation.query_parser.schemas import WineQuery
+from wine_recommendation.recommendation.filters import WineFilters
 from wine_recommendation.recommendation.ranking import RankingWeights, calculate_score
 from wine_recommendation.recommendation.schemas import WineCandidate, WineRecommendation
 
@@ -12,7 +12,7 @@ class RecommendationService:
     def recommend(
         self,
         candidates: list[WineCandidate],
-        query: WineQuery,
+        filters: WineFilters,
         limit: int = 5,
         preferred_pair: tuple[str, str] | None = None,
         personalized_scores: dict[int, float] | None = None,
@@ -27,12 +27,14 @@ class RecommendationService:
         filtered = [
             wine
             for wine in candidates
-            if wine.wine_id not in excluded and self._matches(wine, query)
+            if wine.wine_id not in excluded and self._matches(wine, filters)
         ]
         max_reviews = max((wine.reviews_count for wine in filtered), default=0)
         ranked: list[WineRecommendation] = []
         for wine in filtered:
-            standard_score = calculate_score(wine, query, self.weights, max_reviews, preferred_pair)
+            standard_score = calculate_score(
+                wine, filters, self.weights, max_reviews, preferred_pair
+            )
             ml_score = personalized_scores.get(wine.wine_id) if personalized_scores else None
             score = (
                 (1 - personalization_weight) * standard_score + personalization_weight * ml_score
@@ -58,11 +60,11 @@ class RecommendationService:
         return sorted(ranked, key=lambda item: (-item.score, item.wine_id))[:limit]
 
     @staticmethod
-    def _matches(wine: WineCandidate, query: WineQuery) -> bool:
+    def _matches(wine: WineCandidate, filters: WineFilters) -> bool:
         return not (
-            (query.color is not None and wine.color != query.color)
-            or (query.sugar_type is not None and wine.sugar_type != query.sugar_type)
-            or (query.min_price is not None and wine.price < query.min_price)
-            or (query.max_price is not None and wine.price > query.max_price)
-            or (query.min_rating is not None and (wine.rating or 0) < query.min_rating)
+            (filters.color is not None and wine.color != filters.color)
+            or (filters.sugar_type is not None and wine.sugar_type != filters.sugar_type)
+            or (filters.min_price is not None and wine.price < filters.min_price)
+            or (filters.max_price is not None and wine.price > filters.max_price)
+            or (filters.min_rating is not None and (wine.rating or 0) < filters.min_rating)
         )

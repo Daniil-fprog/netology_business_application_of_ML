@@ -15,7 +15,6 @@ from wine_recommendation.db.repositories.repository import ConflictError, NotFou
 from wine_recommendation.db.session import SessionLocal
 from wine_recommendation.ml import train_recommender
 from wine_recommendation.parser.base import SourceError
-from wine_recommendation.query_parser.parser import QueryParseError
 
 configure_logging(settings.log_level)
 logger = logging.getLogger(__name__)
@@ -58,11 +57,6 @@ async def not_found(_: Request, exc: NotFoundError) -> JSONResponse:
 @app.exception_handler(ConflictError)
 async def conflict(_: Request, exc: ConflictError) -> JSONResponse:
     return JSONResponse(status_code=409, content={"detail": str(exc)})
-
-
-@app.exception_handler(QueryParseError)
-async def query_error(_: Request, exc: QueryParseError) -> JSONResponse:
-    return JSONResponse(status_code=422, content={"detail": str(exc)})
 
 
 @app.exception_handler(SourceError)

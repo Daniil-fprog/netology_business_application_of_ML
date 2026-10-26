@@ -93,8 +93,7 @@ class RecommendationEvent(Base):
     user_id: Mapped[int | None] = mapped_column(
         ForeignKey("users.id", ondelete="SET NULL"), nullable=True, index=True
     )
-    raw_query: Mapped[str] = mapped_column(Text)
-    parsed_params: Mapped[dict[str, Any]] = mapped_column(JSON)
+    filters: Mapped[dict[str, Any]] = mapped_column(JSON)
     recommended_wine_ids: Mapped[list[int]] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
