@@ -21,7 +21,7 @@ class MockJsonSource:
 
     def __init__(self, path: str) -> None:
         if not path:
-            raise ValueError("MOCK_JSON_DATA is not configured")
+            raise ValueError("Mock JSON path is required")
         self.path = path
 
     def fetch(self) -> list[ParsedWine]:

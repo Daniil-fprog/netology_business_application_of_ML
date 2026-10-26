@@ -74,7 +74,6 @@ poetry run uvicorn wine_recommendation.main:app --reload
 - `GET /users`, `POST /users`
 - `POST /users/{id}/likes`, `DELETE /users/{id}/likes/{wine_id}`
 - `POST /recommendations`
-- `POST /parser/update`
 - `POST /ml/retrain`
 
 ```bash
@@ -93,19 +92,13 @@ curl -X POST http://localhost:8000/ml/retrain
 
 ### Загрузка каталога
 
-По умолчанию внешний парсер выключен, а локальный JSON-мок загружается в БД
-автоматически после применения миграций при каждом старте API:
-
-```dotenv
-PARSER_ENABLED=false
-MOCK_JSON_DATA=src/wine_recommendation/data/mock_wines.json
-```
+Локальные JSON-моки загружаются в БД автоматически после применения
+миграций при каждом старте API. Путь к файлам моков задан в коде и не требует
+переменных окружения.
 
 Встроенные моки содержат 100 вин, 20 пользователей и 120 лайков. Повторный
 запуск контейнера безопасен: вина и пользователи обновляются, а лайки не
 дублируются.
-При `PARSER_ENABLED=true` автозагрузка локального мока пропускается, а endpoint
-`POST /parser/update` становится доступен для ручного обновления.
 
 ### Качество кода
 

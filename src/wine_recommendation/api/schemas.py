@@ -90,11 +90,6 @@ class RecommendationResponse(BaseModel):
     recommendations: list[RecommendationRead]
 
 
-class ParserUpdateResponse(BaseModel):
-    source: str
-    updated: int
-
-
 class MLTrainingResponse(BaseModel):
     status: Literal["trained"] = "trained"
     trained_at: datetime

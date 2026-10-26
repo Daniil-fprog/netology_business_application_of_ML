@@ -1,14 +1,12 @@
-"""Load local demo data when the external parser is disabled."""
+"""Load the built-in demo catalogue, users, and likes."""
 
 import json
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlsplit
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from wine_recommendation.core.config import settings
 from wine_recommendation.db.models import User, UserLike, Wine
 from wine_recommendation.db.repositories import Repository
 from wine_recommendation.db.session import SessionLocal
@@ -16,6 +14,7 @@ from wine_recommendation.parser.mock_json import MockJsonSource
 from wine_recommendation.parser.service import ParserService
 
 DATA_DIR = Path(__file__).parents[1] / "data"
+WINES_PATH = DATA_DIR / "mock_wines.json"
 
 
 def _read_mock_items(path: Path, key: str) -> list[dict[str, Any]]:
@@ -97,14 +96,7 @@ def load_mock_users_and_likes(session: Session) -> tuple[int, int]:
 
 
 def load_mock_catalog() -> None:
-    if settings.parser_enabled:
-        return
-
-    source_url = urlsplit(settings.mock_json_data)
-    if source_url.scheme not in {"", "file"}:
-        raise SystemExit("Automatic catalogue loading requires a local path in MOCK_JSON_DATA")
-
-    source = MockJsonSource(settings.mock_json_data)
+    source = MockJsonSource(str(WINES_PATH))
     with SessionLocal() as session:
         updated = ParserService(source, Repository(session)).update()
         users_created, likes_created = load_mock_users_and_likes(session)
